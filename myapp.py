@@ -62,8 +62,8 @@ if my_page == 'About MedInfoHub':
         keyword = st.text_input("Enter a keyword to search:")
     
         if keyword:
-        # Filter questions containing the keyword
-        filtered_df = df[df['question'].str.contains(keyword, case=False, na=False)]
+            # Filter questions containing the keyword
+            filtered_df = df[df['question'].str.contains(keyword, case=False, na=False)]
         
             if not filtered_df.empty:
                 # Create a dropdown with matching questions
