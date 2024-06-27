@@ -68,7 +68,7 @@ if my_page == 'About MedInfoHub':
             # Filter questions containing the keyword
             filtered_df = df[df['question'].str.contains(keyword, case=False, na=False)]
             st.header(keyword)
-            column.subheader("Focus Area")
+            column2.subheader("Focus Area")
             
             
             def get_synsets(text):
