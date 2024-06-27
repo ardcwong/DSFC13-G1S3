@@ -13,19 +13,8 @@ from wordcloud import WordCloud
 import subprocess
 
 # Custom function to download NLTK data
-def download_nltk_data():
-    nltk.download('punkt', quiet=True)
-    nltk.download('wordnet', quiet=True)
-    nltk.download('omw-1.4', quiet=True)
+nltk.download('punkt', quiet=True)
 
-# Ensure NLTK data is available
-try:
-    nltk.data.find('tokenizers/punkt')
-    nltk.data.find('corpora/wordnet')
-    nltk.data.find('corpora/omw-1.4')
-except LookupError:
-    st.warning("Downloading necessary NLTK data. Please wait...")
-    download_nltk_data()
 
 
 ###
