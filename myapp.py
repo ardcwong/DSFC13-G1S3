@@ -101,7 +101,7 @@ if my_page == 'About MedInfoHub':
             # Find the focus area with the highest similarity
             best_match_focus_area = max(similarities, key=similarities.get)
             
-            column2.subheader(f"Focus Area - {best_match_focus_area}")
+            column2.header(f"Focus Area - {best_match_focus_area}")
             focus_area = best_match_focus_area
             
             if focus_area:
