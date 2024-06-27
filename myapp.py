@@ -15,7 +15,7 @@ import subprocess
 # Custom function to download NLTK data
 nltk.download('punkt', quiet=True)
 nltk.download('wordnet', quiet=True)
-
+nltk.download('omw-1.4', quiet=True)
 
 ###
 # api_key = st.secrets['api_key']
