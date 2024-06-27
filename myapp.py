@@ -101,6 +101,16 @@ if my_page == 'About MedInfoHub':
             best_match_focus_area = max(similarities, key=similarities.get)
             column2.markdown(best_match_focus_area)
             
+
+            txt = column2.text_area(
+                None,
+                best_match_focus_area,
+                )
+
+
+
+
+
             
             
             
