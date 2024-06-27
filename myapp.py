@@ -60,8 +60,9 @@ if my_page == 'About MedInfoHub':
    
     if on:
         initializing()
-
-        keyword = st.text_input("Enter a keyword to search:")
+        column1, column2 = st.columns([1,1])
+        column1.head("Keyword")
+        keyword = column1.text_input("Enter a keyword to search:")
     
         if keyword:
             # Filter questions containing the keyword
