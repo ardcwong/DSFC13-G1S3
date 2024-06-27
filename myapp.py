@@ -69,7 +69,7 @@ if my_page == 'About MedInfoHub':
         
             if not filtered_df.empty:
                 # Create a dropdown with matching questions
-                selected_question = st.selectbox("You may also want to know:", filtered_df['question'].tolist())
+                selected_question = st.selectbox("You may also want to know:", filtered_df['question'].tolist(), index=None)
                 
                 # Display the selected question and its answer
                 st.write("Selected Question:", selected_question)
