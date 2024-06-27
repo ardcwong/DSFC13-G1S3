@@ -7,8 +7,8 @@ from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 from skllm.config import SKLLMConfig
 # from skllm.models.gpt.text2text.summarization import GPTSummarizer
-import openai
-from openai import OpenAI
+# import openai
+# from openai import OpenAI
 from wordcloud import WordCloud
 import subprocess
 
@@ -18,9 +18,9 @@ nltk.download('stopwords')
 
 
 ###
-api_key = st.secrets['api_key']
-client = OpenAI(api_key=api_key)
-SKLLMConfig.set_openai_key(api_key)
+# api_key = st.secrets['api_key']
+# client = OpenAI(api_key=api_key)
+# SKLLMConfig.set_openai_key(api_key)
 
 st.set_page_config(layout='wide')
 
