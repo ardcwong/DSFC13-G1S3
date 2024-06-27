@@ -67,8 +67,9 @@ if my_page == 'About MedInfoHub':
         if keyword:
             # Filter questions containing the keyword
             filtered_df = df[df['question'].str.contains(keyword, case=False, na=False)]
-            st.header(keyword)
             column1, column2 = st.columns([1,1])
+            column1.header(keyword)
+            
             
             
             
