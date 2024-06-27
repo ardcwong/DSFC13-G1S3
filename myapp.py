@@ -69,7 +69,7 @@ if my_page == 'About MedInfoHub':
             filtered_df = df[df['question'].str.contains(keyword, case=False, na=False)]
             st.header(keyword)
             column1, column2 = st.columns([1,1])
-            column2.subheader("Focus Area")
+            
             
             
             def get_synsets(text):
@@ -103,6 +103,8 @@ if my_page == 'About MedInfoHub':
             
             highlighted_best_match_focus_area = ""
             highlighted_best_match_focus_area += f"<span style='background-color:#808080;padding: 5px; border-radius: 5px; margin-right: 5px;'>{best_match_focus_area}</span>"
+            
+            column2.subheader(f"Focus Area - {best_match_focus_area}")
             column2.markdown(highlighted_best_match_focus_area, unsafe_allow_html=True) 
             focus_area = best_match_focus_area
             
