@@ -12,10 +12,13 @@ from openai import OpenAI
 from wordcloud import WordCloud
 import subprocess
 
+if "nlp" not in st.session_state:
+    st.session_state.nlp = spacy.load('en_core_web_sm', disable=["parser", "ner"])
 
-nltk.download('punkt')
-nltk.download('wordnet')
-nltk.download('omw-1.4')
+    nltk.download('punkt')     # Downloads the Punkt tokenizer models
+    nltk.download('stopwords') # Downloads the list of stopwords
+    nltk.download('wordnet')   # Downloads the WordNet lemmatizer data
+    nltk.download('averaged_perceptron_tagger')
 
 ###
 api_key = st.secrets['api_key']
