@@ -104,7 +104,7 @@ if my_page == 'About MedInfoHub':
             highlighted_best_match_focus_area = ""
             highlighted_best_match_focus_area += f"<span style='background-color:#808080;padding: 5px; border-radius: 5px; margin-right: 5px;'>{best_match_focus_area}</span>"
             
-            column2.subheader(f"Focus Area - {highlighted_best_match_focus_area}", unsafe_allow_html=True)
+            column2.subheader(f"Focus Area - {highlighted_best_match_focus_area}")
             # column2.markdown(highlighted_best_match_focus_area, unsafe_allow_html=True) 
             focus_area = best_match_focus_area
             
