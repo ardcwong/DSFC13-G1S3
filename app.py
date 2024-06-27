@@ -4,8 +4,8 @@ import matplotlib.pyplot as plt
 import nltk
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
-# import openai
-# from openai import OpenAI
+import openai
+from openai import OpenAI
 from wordcloud import WordCloud
 
 # api_key = st.secrets["api_key"]
