@@ -74,13 +74,9 @@ for area, synsets in focus_area_synsets.items():
     similarity = compute_similarity(keyword_synsets, synsets)
     similarities[area] = similarity
 
-# Print all similarity scores
-for area, similarity in similarities.items():
-    print(f"Similarity between '{keyword}' and '{area}': {similarity}")
 
 # Find the focus area with the highest similarity
 best_match_focus_area = max(similarities, key=similarities.get)
-print(f"\nThe keyword '{keyword}' is most similar to the focus area '{best_match_focus_area}'.")
 st.markdown(best_match_focus_area)
 # # Calculate similarities
 # similarity_scores = {}
