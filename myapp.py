@@ -40,7 +40,8 @@ if my_page == 'About MedInfoHub':
 
     # Displaying the button with custom style
     start = st.button("Start", type="primary")
-    st.write('Initializing')
+    if start:
+        st.write("Initializing")
 
 
 if my_page == 'Keyword':
