@@ -13,8 +13,7 @@ from wordcloud import WordCloud
 import subprocess
 
 if "nlp" not in st.session_state:
-    st.session_state.nlp = spacy.load('en_core_web_sm', disable=["parser", "ner"])
-
+   
     nltk.download('punkt')     # Downloads the Punkt tokenizer models
     nltk.download('stopwords') # Downloads the list of stopwords
     nltk.download('wordnet')   # Downloads the WordNet lemmatizer data
