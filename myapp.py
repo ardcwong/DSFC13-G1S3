@@ -58,7 +58,7 @@ if my_page == 'About MedInfoHub':
         msg.toast('Ready!', icon = "🥞")
         status = 1
    
-    if start:
+    if on:
         initializing()
 
         keyword = st.text_input("Enter a keyword to search:")
