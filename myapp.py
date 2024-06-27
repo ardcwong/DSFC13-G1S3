@@ -102,7 +102,8 @@ if my_page == 'About MedInfoHub':
             column2.markdown(best_match_focus_area)
             
             highlighted_best_match_focus_area = ""
-            highlighted_best_match_focus_area += f"<span style='background-color:#808080;padding: 5px; border-radius: 5px; margin-right: 5px;'>{best_match_focus_area}</span>"
+            for i, keyword in enumerate(best_match_focus_area):
+                highlighted_best_match_focus_area += f"<span style='background-color:#808080;padding: 5px; border-radius: 5px; margin-right: 5px;'>{best_match_focus_area}</span>"
             column2.markdown(highlighted_keywords, unsafe_allow_html=True) 
             
 
