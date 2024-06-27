@@ -8,9 +8,9 @@ from nltk.corpus import stopwords
 # from openai import OpenAI
 from wordcloud import WordCloud
 
-api_key = st.secrets["api_key"]
-SKLLMConfig.set_openai_key(api_key)
-client = OpenAI(api_key=api_key)
+# api_key = st.secrets["api_key"]
+# SKLLMConfig.set_openai_key(api_key)
+# client = OpenAI(api_key=api_key)
 
 df = pd.read_csv('data/medquad.csv')
 ### KEYWORD
