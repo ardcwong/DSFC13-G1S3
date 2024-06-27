@@ -14,7 +14,7 @@ import subprocess
 
 # Custom function to download NLTK data
 nltk.download('punkt', quiet=True)
-nltk.download('wordnet', download_dir='./nltk_data')
+nltk.download('wordnet', quiet=True)
 
 
 ###
