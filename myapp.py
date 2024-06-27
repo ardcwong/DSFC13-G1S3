@@ -32,7 +32,7 @@ df = df.iloc[:2000]
 if my_page == 'About MedInfoHub':
     
     st.image('data/MIH.png')
-    col1, col2 = st.columns([2,1])
+    col1, col2 = st.columns([1,1])
     col1.image('data/art.png')
     col2.write("MedInfoHub is a comprehensive healthcare app designed to provide accessible medical information to patients and healthcare providers.Leveraging the power of the MedQuAD dataset* and advanced AI, MedInfoHub offers reliable answers to medical questions, supports telemedicine consultations, and enhances public health literacy. Whether you’re a patient seeking to understand your health better or a healthcare provider in need of quick, reliable information, MedInfoHub is your go-to resource for trusted medical knowledge.")
     
