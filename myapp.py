@@ -12,7 +12,7 @@ from openai import OpenAI
 from wordcloud import WordCloud
 import subprocess
 import time
-
+import numpy as np
 # Custom function to download NLTK data
 nltk.download('punkt', quiet=True)
 nltk.download('wordnet', quiet=True)
