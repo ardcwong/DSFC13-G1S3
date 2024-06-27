@@ -25,7 +25,7 @@ SKLLMConfig.set_openai_key(api_key)
 
 st.set_page_config(layout='wide')
 
-my_page = st.sidebar.radio('Page Navigation', ['About MedInfoHub','Keyword Q'])
+my_page = st.sidebar.radio('Page Navigation', ['MedInfoHub','Keyword Q'])
 
 # DATA SET
 df = pd.read_csv('data/medquad.csv')
