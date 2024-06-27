@@ -99,13 +99,31 @@ if my_page == 'About MedInfoHub':
             
             # Find the focus area with the highest similarity
             best_match_focus_area = max(similarities, key=similarities.get)
-            column2.markdown(best_match_focus_area)
             
             highlighted_best_match_focus_area = ""
             highlighted_best_match_focus_area += f"<span style='background-color:#808080;padding: 5px; border-radius: 5px; margin-right: 5px;'>{best_match_focus_area}</span>"
             column2.markdown(highlighted_best_match_focus_area, unsafe_allow_html=True) 
             
-
+            if best_match_focus_area:
+                # Filter answers by the selected focus area
+                filtered_df = df[df['focus_area'].str.lower().str.contains(best_match_focus_area, case=False, na=False)]
+                
+                if not filtered_df.empty:
+                    # Concatenate all answers into a single text
+                    all_answers_text = " ".join(filtered_df['answer'].dropna().tolist())
+                    
+                    # Generate word cloud of content of summary of answers
+                    wordcloud = WordCloud(width=800, height=400, background_color='white').generate(all_answers_text)
+                    
+                    # Display the word cloud
+                    plt.figure(figsize=(10, 5))
+                    plt.imshow(wordcloud, interpolation='bilinear')
+                    plt.axis('off')
+                    st.pyplot(plt)
+                else:
+                    st.write("No matching focus areas found.")
+            else:
+                st.write("Please enter or select a focus area to search.")
 
 
 
@@ -164,40 +182,7 @@ if my_page == 'Keyword Q':
         st.write("Please enter a keyword to search.")
     
     
-    # Tokenize and get synsets for the keyword and focus areas
-    def get_synsets(text):
-        tokens = word_tokenize(text)
-        synsets = [wn.synsets(token) for token in tokens]
-        synsets = [item for sublist in synsets for item in sublist]  # Flatten list
-        return synsets
-    
-    keyword_synsets = get_synsets(keyword)
-    focus_area_synsets = {area: get_synsets(area) for area in focus_areas}
-    
-    # Compute similarity
-    def compute_similarity(synsets1, synsets2):
-        max_similarity = 0
-        for synset1 in synsets1:
-            for synset2 in synsets2:
-                similarity = synset1.path_similarity(synset2)
-                if similarity and similarity > max_similarity:
-                    max_similarity = similarity
-        return max_similarity
-    
-    # Calculate similarities
-    similarities = {}
-    for area, synsets in focus_area_synsets.items():
-        similarity = compute_similarity(keyword_synsets, synsets)
-        similarities[area] = similarity
-    
-    
-    # Find the focus area with the highest similarity
-    best_match_focus_area = max(similarities, key=similarities.get)
-    st.markdown(best_match_focus_area)
 
-
-    
-    
     
     
     if keyword:
