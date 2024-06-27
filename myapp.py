@@ -61,7 +61,7 @@ if my_page == 'About MedInfoHub':
     if on:
         initializing()
         column1, column2 = st.columns([1,1])
-        column1.subheader("Keyword")
+        st.subheader("Keyword")
         keyword = column1.text_input("Enter a keyword to search:")
     
         if keyword:
@@ -104,6 +104,7 @@ if my_page == 'About MedInfoHub':
             highlighted_best_match_focus_area += f"<span style='background-color:#808080;padding: 5px; border-radius: 5px; margin-right: 5px;'>{best_match_focus_area}</span>"
             column2.markdown(highlighted_best_match_focus_area, unsafe_allow_html=True) 
             focus_area = best_match_focus_area
+            
             if focus_area:
                 # Filter answers by the selected focus area
                 filtered_df = df[df['focus_area'].str.lower().str.contains(focus_area, case=False, na=False)]
@@ -125,7 +126,7 @@ if my_page == 'About MedInfoHub':
             else:
                 column2.write("Please enter or select a focus area to search.")
 
-
+                
             def generate_response(focus_area, prompt):
                 response = client.chat.completions.create(
                     model='gpt-3.5-turbo',
