@@ -32,9 +32,22 @@ df = df.iloc[:2000]
 if my_page == 'About MedInfoHub':
     
     st.image('data/MIH.png')
-    st.write("MedInfoHub is a comprehensive healthcare app designed to provide accessible medical information to patients and healthcare providers.Leveraging the power of the MedQuAD dataset* and advanced AI, MedInfoHub offers reliable answers to medical questions, supports telemedicine consultations, and enhances public health literacy. Whether you’re a patient seeking to understand your health better or a healthcare provider in need of quick, reliable information, MedInfoHub is your go-to resource for trusted medical knowledge.")
-    st.image('data/banner.png')
+    col1, col2 = st.columns([2,1])
+    col1.image('data/banner.png')
+    col2.write("MedInfoHub is a comprehensive healthcare app designed to provide accessible medical information to patients and healthcare providers.Leveraging the power of the MedQuAD dataset* and advanced AI, MedInfoHub offers reliable answers to medical questions, supports telemedicine consultations, and enhances public health literacy. Whether you’re a patient seeking to understand your health better or a healthcare provider in need of quick, reliable information, MedInfoHub is your go-to resource for trusted medical knowledge.")
     
+    # Custom CSS styling for the button
+    button_style = """
+        background-color: red;
+        color: white;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 5px;
+    """
+    
+    # Displaying the button with custom style
+    start = col2.button('Start', style=button_style):
+        st.write('Initializing')
 
 
 if my_page == 'Keyword':
