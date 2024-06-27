@@ -52,10 +52,10 @@ if my_page == 'About MedInfoHub':
         msg.toast('Initializing...')
         time.sleep(1)
         msg.toast('Ready!', icon = "🥞")
-        status = 'ready'
+        status = 1
     if start:
         initializing()
-        if status =='ready':
+        if status == 1:
             tab1, tab2 = st.tabs(["📈 Chart", "🗃 Data"])
             data = np.random.randn(10, 1)
             
