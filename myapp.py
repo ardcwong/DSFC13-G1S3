@@ -76,7 +76,6 @@ if my_page == 'About MedInfoHub':
 
    
 
-st.write("This is outside the container")
 
 if my_page == 'Keyword':
     
