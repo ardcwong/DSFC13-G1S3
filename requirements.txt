@@ -1,0 +1,17 @@
+contractions
+imblearn
+joblib
+matplotlib
+nltk
+numpy
+openai
+pandas
+scikit
+seaborn
+spacy
+streamlit
+streamlit_chat
+wordcloud
+scikit-learn-intelex
+scikit-llm
+scipy
