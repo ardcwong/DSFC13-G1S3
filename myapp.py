@@ -12,12 +12,10 @@ from openai import OpenAI
 from wordcloud import WordCloud
 import subprocess
 
-if "nlp" not in st.session_state:
-   
-    nltk.download('punkt')     # Downloads the Punkt tokenizer models
-    nltk.download('stopwords') # Downloads the list of stopwords
-    nltk.download('wordnet')   # Downloads the WordNet lemmatizer data
-    nltk.download('averaged_perceptron_tagger')
+nltk.download('punkt')
+nltk.download('stopwords')
+
+
 
 ###
 api_key = st.secrets['api_key']
