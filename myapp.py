@@ -101,12 +101,7 @@ if my_page == 'About MedInfoHub':
             # Find the focus area with the highest similarity
             best_match_focus_area = max(similarities, key=similarities.get)
             
-            highlighted_best_match_focus_area = ""
-            highlighted_best_match_focus_area += f"<span style='background-color:#808080;padding: 5px; border-radius: 5px; margin-right: 5px;'>{best_match_focus_area}</span>"
-
-            fa = st.markdown(highlighted_best_match_focus_area, unsafe_allow_html=True) 
-            column2.subheader(f"Focus Area - {fa}")
-            
+            column2.subheader(f"Focus Area - {best_match_focus_area}")
             focus_area = best_match_focus_area
             
             if focus_area:
@@ -129,7 +124,7 @@ if my_page == 'About MedInfoHub':
                     column2.write("No matching focus areas found.")
             else:
                 column2.write("Please enter or select a focus area to search.")
-
+                
                 
             def generate_response(focus_area, prompt):
                 response = client.chat.completions.create(
