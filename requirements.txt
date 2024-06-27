@@ -15,3 +15,4 @@ scikit-learn-intelex
 scikit-llm
 scipy
 spacy-streamlit
+numpy
