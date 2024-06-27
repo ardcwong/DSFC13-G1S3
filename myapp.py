@@ -46,8 +46,8 @@ if my_page == 'About MedInfoHub':
     """
     
     # Displaying the button with custom style
-    start = col2.button('Start', style=button_style):
-        st.write('Initializing')
+    start = col2.button('Start', style=button_style)
+    col2.write('Initializing')
 
 
 if my_page == 'Keyword':
