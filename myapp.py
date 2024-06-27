@@ -45,11 +45,11 @@ if my_page == 'About MedInfoHub':
     col_start1, col_start2, col_start3 = st.columns([1,1,1])
     start = col_start2.button("Start", type="primary",use_container_width = True)
     def initializing():
-    msg = st.toast('Getting Ready...')
-    time.sleep(1)
-    msg.toast('Initializing...')
-    time.sleep(1)
-    msg.toast('Ready!', icon = "🥞")
+        msg = st.toast('Getting Ready...')
+        time.sleep(1)
+        msg.toast('Initializing...')
+        time.sleep(1)
+        msg.toast('Ready!', icon = "🥞")
     if start:
         initializing()
 
