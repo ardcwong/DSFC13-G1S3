@@ -36,17 +36,10 @@ if my_page == 'About MedInfoHub':
     col1.image('data/art.png')
     col2.write("MedInfoHub is a comprehensive healthcare app designed to provide accessible medical information to patients and healthcare providers.Leveraging the power of the MedQuAD dataset* and advanced AI, MedInfoHub offers reliable answers to medical questions, supports telemedicine consultations, and enhances public health literacy. Whether you’re a patient seeking to understand your health better or a healthcare provider in need of quick, reliable information, MedInfoHub is your go-to resource for trusted medical knowledge.")
     
-    # Custom CSS styling for the button
-    button_style = """
-        background-color: red;
-        color: white;
-        padding: 10px 20px;
-        font-size: 16px;
-        border-radius: 5px;
-    """
-    
+   
+
     # Displaying the button with custom style
-    start = st.button('Start', style=button_style)
+    start = st.button("Start", type="primary")
     st.write('Initializing')
 
 
