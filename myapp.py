@@ -30,6 +30,9 @@ my_page = st.sidebar.radio('Page Navigation', ['About MedInfoHub','Keyword', 'To
 # DATA SET
 df = pd.read_csv('data/medquad.csv')
 df = df.iloc[:2000]
+# Define your focus areas
+focus_areas = df['focus_area'].str.lower().unique().tolist()
+
 if my_page == 'About MedInfoHub':
     
     st.image('data/MIH.png')
@@ -55,6 +58,13 @@ if my_page == 'About MedInfoHub':
         status = 1
     if start:
         initializing()
+
+        keyword = st.text_input("Enter a keyword to search:")
+    
+        
+
+
+        
         tab1, tab2 = st.tabs(["📈 Chart", "🗃 Data"])
         data = np.random.randn(10, 1)
         
@@ -74,9 +84,23 @@ if my_page == 'Keyword':
     st.title("Search Questions by Keyword")
     
     keyword = st.text_input("Enter a keyword to search:")
+    if keyword:
+        # Filter questions containing the keyword
+        filtered_df = df[df['question'].str.contains(keyword, case=False, na=False)]
+        
+        if not filtered_df.empty:
+            # Create a dropdown with matching questions
+            selected_question = st.selectbox("Select a Question:", filtered_df['question'].tolist())
+            
+            # Display the selected question and its answer
+            st.write("Selected Question:", selected_question)
+            selected_answer = filtered_df[filtered_df['question'] == selected_question]['answer'].values[0]
+            st.write("Answer:", selected_answer)
+        else:
+            st.write("No matching questions found.")
+    else:
+        st.write("Please enter a keyword to search.")
     
-    # Define your focus areas
-    focus_areas = df['focus_area'].str.lower().unique().tolist()
     
     # Tokenize and get synsets for the keyword and focus areas
     def get_synsets(text):
