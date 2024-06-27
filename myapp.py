@@ -68,6 +68,42 @@ if my_page == 'About MedInfoHub':
             # Filter questions containing the keyword
             filtered_df = df[df['question'].str.contains(keyword, case=False, na=False)]
             column1.subheader(keyword)
+            column2.header("Focus Area")
+            
+            
+            def get_synsets(text):
+                    tokens = word_tokenize(text)
+                    synsets = [wn.synsets(token) for token in tokens]
+                    synsets = [item for sublist in synsets for item in sublist]  # Flatten list
+                    return synsets
+                
+            keyword_synsets = get_synsets(keyword)
+            focus_area_synsets = {area: get_synsets(area) for area in focus_areas}
+            
+            # Compute similarity
+            def compute_similarity(synsets1, synsets2):
+                max_similarity = 0
+                for synset1 in synsets1:
+                    for synset2 in synsets2:
+                        similarity = synset1.path_similarity(synset2)
+                        if similarity and similarity > max_similarity:
+                            max_similarity = similarity
+                return max_similarity
+            
+            # Calculate similarities
+            similarities = {}
+            for area, synsets in focus_area_synsets.items():
+                similarity = compute_similarity(keyword_synsets, synsets)
+                similarities[area] = similarity
+            
+            
+            # Find the focus area with the highest similarity
+            best_match_focus_area = max(similarities, key=similarities.get)
+            column2.markdown(best_match_focus_area)
+            
+            
+            
+            
             if not filtered_df.empty:
                 # Create a dropdown with matching questions
                 selected_question = st.selectbox("You may also want to know:", filtered_df['question'].tolist(), index=None)
