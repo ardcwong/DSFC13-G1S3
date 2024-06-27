@@ -161,12 +161,11 @@ if my_page == 'About MedInfoHub':
                 return doctor_recommendation
             
             if focus_area:
-                if summary_button:
-                    summary = summarize_answer(focus_area)
-                    column1.markdown(summary) 
-                
-                    doctor_recommendation = specialty_doctor_recommendation(summary)
-                    column1.markdown(doctor_recommendation)
+                summary = summarize_answer(focus_area)
+                column1.markdown(summary) 
+            
+                doctor_recommendation = specialty_doctor_recommendation(summary)
+                column1.markdown(doctor_recommendation)
 
 
 
