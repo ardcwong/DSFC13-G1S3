@@ -33,7 +33,7 @@ df = df.iloc[:2000]
 # Define your focus areas
 focus_areas = df['focus_area'].str.lower().unique().tolist()
 
-if my_page == 'About MedInfoHub':
+if my_page == 'MedInfoHub':
     
     st.image('data/MIH.png')
     col1, col2 = st.columns([1,1])
