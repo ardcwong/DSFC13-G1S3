@@ -41,7 +41,8 @@ if my_page == 'About MedInfoHub':
    
 
     # Displaying the button with custom style
-    start = st.button("Start", type="primary")
+    col_start1, col_start2, col_start3 = st.columns([1,1,1])
+    start = col_start2.button("Start", type="primary",use_container_width = True)
     if start:
         st.write("Initializing")
 
