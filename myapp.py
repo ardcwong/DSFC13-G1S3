@@ -60,14 +60,15 @@ if my_page == 'About MedInfoHub':
    
     if on:
         initializing()
-        column1, column2 = st.columns([1,1])
+        
         st.subheader("Keyword")
-        keyword = column1.text_input("Enter a keyword to search:")
+        keyword = st.text_input("Enter a keyword to search:")
     
         if keyword:
             # Filter questions containing the keyword
             filtered_df = df[df['question'].str.contains(keyword, case=False, na=False)]
             st.header(keyword)
+            column1, column2 = st.columns([1,1])
             column2.subheader("Focus Area")
             
             
