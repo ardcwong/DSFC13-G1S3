@@ -25,7 +25,7 @@ SKLLMConfig.set_openai_key(api_key)
 
 st.set_page_config(layout='wide')
 
-my_page = st.sidebar.radio('Page Navigation', ['About MedInfoHub','Keyword', 'Tokenization', 'Text Summarization', 'Keyword Extraction', 'Prompt'])
+my_page = st.sidebar.radio('Page Navigation', ['About MedInfoHub','Keyword Q', 'Tokenization', 'Text Summarization', 'Keyword Extraction', 'Prompt'])
 
 # DATA SET
 df = pd.read_csv('data/medquad.csv')
@@ -92,7 +92,7 @@ if my_page == 'About MedInfoHub':
    
 
 
-if my_page == 'Keyword':
+if my_page == 'Keyword Q':
     
     ### KEYWORD
     st.title("Search Questions by Keyword")
