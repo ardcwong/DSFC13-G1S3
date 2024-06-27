@@ -48,7 +48,7 @@ if my_page == 'About MedInfoHub':
 
     # Displaying the button with custom style
     col_start1, col_start2, col_start3 = st.columns([1,1,1])
-    start = col2.button("Start", type="primary",use_container_width = True)
+    start = col2.toggle("Start", type="primary",use_container_width = True)
     def initializing():
         msg = st.toast('Getting Ready...')
         time.sleep(1)
@@ -56,6 +56,7 @@ if my_page == 'About MedInfoHub':
         time.sleep(1)
         msg.toast('Ready!', icon = "🥞")
         status = 1
+   
     if start:
         initializing()
 
