@@ -42,13 +42,14 @@ if my_page == 'About MedInfoHub':
     col2.write("")
     col2.write("MedInfoHub is a comprehensive healthcare app designed to provide accessible medical information to patients and healthcare providers. Leveraging the power of the MedQuAD dataset* and advanced AI, MedInfoHub offers reliable answers to medical questions, supports telemedicine consultations, and enhances public health literacy. Whether you’re a patient seeking to understand your health better or a healthcare provider in need of quick, reliable information, MedInfoHub is your go-to resource for trusted medical knowledge.")
     col2.write("*The MedQuAD dataset aggregates content from reputable sources like the National Institutes of Health (NIH), National Library of Medicine (NLM), and other authoritative medical organizations.")
-    col2.write("Press the 'Start' Button to begin exploring MedInfoHub.")
+    col2.write("Press the 'Activate MedInfoHub' Button to begin exploring MedInfoHub.")
     
    
 
     # Displaying the button with custom style
     col_start1, col_start2, col_start3 = st.columns([1,1,1])
-    start = col2.toggle("Start", type="primary",use_container_width = True)
+    on = st.toggle("Activate MedInfoHub")
+
     def initializing():
         msg = st.toast('Getting Ready...')
         time.sleep(1)
