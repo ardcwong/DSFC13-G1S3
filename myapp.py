@@ -67,7 +67,7 @@ if my_page == 'About MedInfoHub':
         if keyword:
             # Filter questions containing the keyword
             filtered_df = df[df['question'].str.contains(keyword, case=False, na=False)]
-        
+            column1.subheader(keyword)
             if not filtered_df.empty:
                 # Create a dropdown with matching questions
                 selected_question = st.selectbox("You may also want to know:", filtered_df['question'].tolist(), index=None)
