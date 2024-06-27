@@ -54,7 +54,12 @@ if my_page == 'About MedInfoHub':
         msg.toast('Ready!', icon = "🥞")
     if start:
         initializing()
+        with st.container():
+           st.write("This is inside the container")
 
+   
+
+st.write("This is outside the container")
 
 if my_page == 'Keyword':
     
