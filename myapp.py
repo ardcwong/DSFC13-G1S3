@@ -11,6 +11,7 @@ import openai
 from openai import OpenAI
 from wordcloud import WordCloud
 import subprocess
+import time
 
 # Custom function to download NLTK data
 nltk.download('punkt', quiet=True)
@@ -44,7 +45,9 @@ if my_page == 'About MedInfoHub':
     col_start1, col_start2, col_start3 = st.columns([1,1,1])
     start = col_start2.button("Start", type="primary",use_container_width = True)
     if start:
-        st.write("Initializing")
+        with st.spinner('Wait for it...'):
+            time.sleep(5)
+        st.success('Done!')
 
 
 if my_page == 'Keyword':
