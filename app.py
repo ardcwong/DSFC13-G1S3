@@ -12,7 +12,7 @@ from wordcloud import WordCloud
 # SKLLMConfig.set_openai_key(api_key)
 # client = OpenAI(api_key=api_key)
 
-df = pd.read_csv('data/medquad.csv')
+# df = pd.read_csv('data/medquad.csv')
 ### KEYWORD
 st.title("Search Questions by Keyword")
 
