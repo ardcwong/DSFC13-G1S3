@@ -103,10 +103,10 @@ if my_page == 'About MedInfoHub':
             highlighted_best_match_focus_area = ""
             highlighted_best_match_focus_area += f"<span style='background-color:#808080;padding: 5px; border-radius: 5px; margin-right: 5px;'>{best_match_focus_area}</span>"
             column2.markdown(highlighted_best_match_focus_area, unsafe_allow_html=True) 
-            
-            if best_match_focus_area:
+            focus_area = best_match_focus_area
+            if focus_area:
                 # Filter answers by the selected focus area
-                filtered_df = df[df['focus_area'].str.lower().str.contains(best_match_focus_area, case=False, na=False)]
+                filtered_df = df[df['focus_area'].str.lower().str.contains(focus_area, case=False, na=False)]
                 
                 if not filtered_df.empty:
                     # Concatenate all answers into a single text
@@ -119,13 +119,66 @@ if my_page == 'About MedInfoHub':
                     plt.figure(figsize=(10, 5))
                     plt.imshow(wordcloud, interpolation='bilinear')
                     plt.axis('off')
-                    st.pyplot(plt)
+                    column2.pyplot(plt)
                 else:
-                    st.write("No matching focus areas found.")
+                    column2.write("No matching focus areas found.")
             else:
-                st.write("Please enter or select a focus area to search.")
+                column2.write("Please enter or select a focus area to search.")
 
 
+            def generate_response(focus_area, prompt):
+                response = client.chat.completions.create(
+                    model='gpt-3.5-turbo',
+                    messages=[
+                        {'role': 'system',
+                         'content':
+                         f"Perform the specified tasks based on this focus area:\n\n{focus_area}"},
+                        {'role': 'user', 'content': prompt}
+                    ]
+                )
+                return response.choices[0].message.content
+            
+            def summarize_answer(focus_area):
+                prompt = f'Summarize the answer in easy to understand terms and words'
+                summary = generate_response(focus_area, prompt)
+                return summary
+            
+            def generate_response(summary, prompt):
+                response = client.chat.completions.create(
+                    model='gpt-3.5-turbo',
+                    messages=[
+                        {'role': 'system',
+                         'content':
+                         f"Perform the specified tasks based on this summary:\n\n{summary}"},
+                        {'role': 'user', 'content': prompt}
+                    ]
+                )
+                return response.choices[0].message.content
+            
+            def specialty_doctor_recommendation(summary):
+                prompt = f'Which specialty doctor should I consult?:\n\n{summary}'
+                doctor_recommendation = generate_response(summary, prompt)
+                return doctor_recommendation
+            
+            if focus_area:
+                if summary_button:
+                    summary = summarize_answer(focus_area)
+                    column1.markdown(summary) 
+                
+                    doctor_recommendation = specialty_doctor_recommendation(summary)
+                    column1.markdown(doctor_recommendation)
+
+
+
+
+
+
+
+
+
+
+
+            
 
 
             
@@ -249,47 +302,7 @@ if my_page == 'Keyword Q':
     
     st.title("Text Summarization")
     
-    def generate_response(focus_area, prompt):
-        response = client.chat.completions.create(
-            model='gpt-3.5-turbo',
-            messages=[
-                {'role': 'system',
-                 'content':
-                 f"Perform the specified tasks based on this focus area:\n\n{focus_area}"},
-                {'role': 'user', 'content': prompt}
-            ]
-        )
-        return response.choices[0].message.content
-    
-    def summarize_answer(focus_area):
-        prompt = f'Summarize the answer in easy to understand terms and words'
-        summary = generate_response(focus_area, prompt)
-        return summary
-    
-    def generate_response(summary, prompt):
-        response = client.chat.completions.create(
-            model='gpt-3.5-turbo',
-            messages=[
-                {'role': 'system',
-                 'content':
-                 f"Perform the specified tasks based on this summary:\n\n{summary}"},
-                {'role': 'user', 'content': prompt}
-            ]
-        )
-        return response.choices[0].message.content
-    
-    def specialty_doctor_recommendation(summary):
-        prompt = f'Which specialty doctor should I consult?:\n\n{summary}'
-        doctor_recommendation = generate_response(summary, prompt)
-        return doctor_recommendation
-    
-    if focus_area:
-        if summary_button:
-            summary = summarize_answer(focus_area)
-            st.markdown(summary) 
-        
-            doctor_recommendation = specialty_doctor_recommendation(summary)
-            st.markdown(doctor_recommendation)
+
     
     ### KEYWORD EXTRACTION
     st.title("Keyword Extraction")
