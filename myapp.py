@@ -118,10 +118,11 @@ def process_keyword(keyword, filtered_df):
         if not filtered_df.empty:
             # Concatenate all answers into a single text
             all_answers_text = " ".join(filtered_df['answer'].dropna().tolist())
-            summary = summarize_answer(all_answers_text)
-            st.session_state['summary'] = summary
+            # summary = summarize_answer(all_answers_text)
+            # st.session_state['summary'] = summary
+            # column1.markdown(summary) 
+            summary = all_answers_text
             column1.markdown(summary) 
-            
             # Generate word cloud of content of summary of answers
             wordcloud = WordCloud(width=800, height=400, background_color='white').generate(all_answers_text)
             st.session_state['wordcloud'] = wordcloud
