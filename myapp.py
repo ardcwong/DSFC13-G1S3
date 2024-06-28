@@ -118,9 +118,9 @@ def process_keyword(keyword, filtered_df):
         if not filtered_df.empty:
             # Concatenate all answers into a single text
             all_answers_text = " ".join(filtered_df['answer'].dropna().tolist())
-            summary = summarize_answer(all_answers_text)
-            st.session_state['summary'] = summary
-            column1.markdown(summary) 
+           # summary = summarize_answer(all_answers_text)
+            # st.session_state['summary'] = summary
+            # column1.markdown(summary) 
             
             # Generate word cloud of content of summary of answers
             wordcloud = WordCloud(width=800, height=400, background_color='white').generate(all_answers_text)
@@ -189,75 +189,6 @@ if my_page == 'MedInfoHub':
             select_questions(filtered_df)
         else:
             st.write("Please enter a keyword to search.")
-#-----------
-
-
-
-
-# if 'initialized' not in st.session_state:
-#     st.session_state['initialized'] = False
-# if 'focus_area' not in st.session_state:
-#     st.session_state['focus_area'] = None
-# if 'summary' not in st.session_state:
-#     st.session_state['summary'] = ""
-# if 'wordcloud' not in st.session_state:
-#     st.session_state['wordcloud'] = None
-
-# if 'on' not in st.session_state:
-#     st.session_state['on'] = False
-
-# st.image('data/MIH.png')
-# col1, col2 = st.columns([1, 1])
-# col1.image('data/art.png')
-# col2.write("MedInfoHub is a comprehensive healthcare app designed to provide accessible medical information to patients and healthcare providers. Leveraging the power of the MedQuAD dataset* and advanced AI, MedInfoHub offers reliable answers to medical questions, supports telemedicine consultations, and enhances public health literacy. Whether you’re a patient seeking to understand your health better or a healthcare provider in need of quick, reliable information, MedInfoHub is your go-to resource for trusted medical knowledge.")
-# col2.write("*The MedQuAD dataset aggregates content from reputable sources like the National Institutes of Health (NIH), National Library of Medicine (NLM), and other authoritative medical organizations.")
-# on = st.checkbox("Activate MedInfoHub", value=st.session_state['on'])
-
-# if not on:
-#     st.session_state['initialized'] = False
-#     st.session_state['on'] = False
-# else:
-#     st.session_state['on'] = True
-#     if not st.session_state['initialized']:
-#         initializing()
-#         st.session_state['initialized'] = True
-
-#     st.subheader("Search Keyword Focus Area")
-#     keyword = st.text_input("Enter a keyword to search:")
-#     if keyword and 'processed_keyword' not in st.session_state:
-#         process_keyword(keyword, df)
-#         st.session_state['processed_keyword'] = True
-
-#     if st.session_state['focus_area']:
-#         col1, col2 = st.columns([1, 1])
-#         col1.header(keyword)
-#         col2.header(f"Focus Area - {st.session_state['focus_area']}")
-        
-#         col1.markdown(st.session_state['summary'])
-        
-#         if st.session_state['wordcloud']:
-#             plt.figure(figsize=(10, 5))
-#             plt.imshow(st.session_state['wordcloud'], interpolation='bilinear')
-#             plt.axis('off')
-#             col2.pyplot(plt)
-
-#         filtered_df = df[df['focus_area'].str.lower().str.contains(st.session_state['focus_area'], case=False, na=False)]
-#         select_questions(filtered_df)
-
-
-            
-            # filtered_df, focus_area = process_keyword()
-            # # Check if initializing has been run
-            # if 'process_keyword' not in st.session_state:
-            #     st.session_state['process_keyword'] = False
-                
-            
-            # if not st.session_state['process_keyword']:
-            #     select_questions(filtered_df)
-            #     st.session_state['process_keyword'] = True
-            
-
-
 
 
       
