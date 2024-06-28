@@ -113,7 +113,7 @@ def search_keyword(keyword, text_list):
 
 def process_keyword(keyword, df, best_match_focus_area):
     column1, column2 = st.columns([1,1])
-    column1.info(keyword)
+    column1.header(keyword)
     # keyword_synsets = get_synsets(keyword)
     # focus_area_synsets = {area: get_synsets(area) for area in focus_areas}
 
