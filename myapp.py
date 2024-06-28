@@ -53,16 +53,20 @@ def summarize_answer(focus_area):
     return summary
 
 def generate_response(summary, prompt):
-    response = client.chat.completions.create(
-        model='gpt-3.5-turbo',
-        messages=[
-            {'role': 'system',
-             'content':
-             f"Perform the specified tasks based on this summary:\n\n{summary}"},
-            {'role': 'user', 'content': prompt}
-        ]
-    )
-    return response.choices[0].message.content
+    try:
+        response = client.chat.completions.create(
+            model='gpt-3.5-turbo',
+            messages=[
+                {'role': 'system',
+                 'content':
+                 f"Perform the specified tasks based on this summary:\n\n{summary}"},
+                {'role': 'user', 'content': prompt}
+            ]
+        )
+        return response.choices[0].message.content
+    except:
+        return st.write("Summary Unavailable")
+
 
 def specialty_doctor_recommendation(summary):
     prompt = f'Which specialty doctor should I consult?:\n\n{summary}'
@@ -209,7 +213,7 @@ def extract_keywords(text):
             return [kw.strip() for kw in top_keywords.split(',')]
 
         except:
-            return []
+            return column1.write("Top Keywords is unavailable.")
 
 
 
