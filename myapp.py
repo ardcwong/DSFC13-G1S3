@@ -30,6 +30,7 @@ my_page = st.sidebar.radio('Page Navigation', ['MedInfoHub', 'About MedQuAd Data
 # DATA SET
 df = pd.read_csv('data/medquad.csv')
 df = df.iloc[:3000]
+
 # Define your focus areas
 focus_areas = df['focus_area'].str.lower().unique().tolist()
 
@@ -75,6 +76,24 @@ def initializing():
         msg.toast('Ready!', icon = "🥞")
         status = 1
 
+# FOR SEMANTIC SIMILARITIES MATCHING
+def get_synsets(text):
+        tokens = word_tokenize(text)
+        synsets = [wn.synsets(token) for token in tokens]
+        synsets = [item for sublist in synsets for item in sublist]  # Flatten list
+        return synsets
+# Compute similarity
+def compute_similarity(synsets1, synsets2):
+    max_similarity = 0
+    for synset1 in synsets1:
+        for synset2 in synsets2:
+            similarity = synset1.path_similarity(synset2)
+            if similarity and similarity > max_similarity:
+                max_similarity = similarity
+    return max_similarity
+
+
+
 if my_page == 'MedInfoHub':
     
     st.image('data/MIH.png')
@@ -86,14 +105,11 @@ if my_page == 'MedInfoHub':
     col2.write("*The MedQuAD dataset aggregates content from reputable sources like the National Institutes of Health (NIH), National Library of Medicine (NLM), and other authoritative medical organizations.")
     col2.write("Press the 'Activate MedInfoHub' Button to begin exploring MedInfoHub.")
     
-   
-
     # Displaying the button with custom style
     # col_start1, col_start2, col_start3 = st.columns([1,1,1])
     on = col2.toggle("Activate MedInfoHub")
-       
-    
-        
+          
+    # START SESSION     
     if not on:
         st.session_state['initialized'] = False
     
@@ -105,36 +121,20 @@ if my_page == 'MedInfoHub':
         if not st.session_state['initialized']:
             initializing()
             st.session_state['initialized'] = True
-            
+
+        # ENTER KEYWORD FOR SEMANTIC SIMILARITIES MATCHING WITH FOCUS AREA
         st.subheader("Search Keyword Focus Area")
         keyword = st.text_input("Enter a keyword to search:")
-    
+        
         if keyword:
             # Filter questions containing the keyword
             filtered_df = df[df['question'].str.contains(keyword, case=False, na=False)]
             column1, column2 = st.columns([1,1])
             column1.header(keyword)
                
-            
-            def get_synsets(text):
-                    tokens = word_tokenize(text)
-                    synsets = [wn.synsets(token) for token in tokens]
-                    synsets = [item for sublist in synsets for item in sublist]  # Flatten list
-                    return synsets
-                
             keyword_synsets = get_synsets(keyword)
             focus_area_synsets = {area: get_synsets(area) for area in focus_areas}
-            
-            # Compute similarity
-            def compute_similarity(synsets1, synsets2):
-                max_similarity = 0
-                for synset1 in synsets1:
-                    for synset2 in synsets2:
-                        similarity = synset1.path_similarity(synset2)
-                        if similarity and similarity > max_similarity:
-                            max_similarity = similarity
-                return max_similarity
-            
+                      
             # Calculate similarities
             similarities = {}
             for area, synsets in focus_area_synsets.items():
@@ -149,9 +149,7 @@ if my_page == 'MedInfoHub':
             focus_area = best_match_focus_area
             
             if focus_area:
-
-
-                
+              
                 # Filter answers by the selected focus area
                 filtered_df = df[df['focus_area'].str.lower().str.contains(focus_area, case=False, na=False)]
                 
@@ -171,44 +169,17 @@ if my_page == 'MedInfoHub':
                     plt.imshow(wordcloud, interpolation='bilinear')
                     plt.axis('off')
                     column2.pyplot(plt)
+
+
+                    selected_question = st.selectbox("You may also want to know:", filtered_df['question'].tolist(), index=None)
+                    
+                    # Display the selected question and its answer
+                    st.write("Selected Question:", selected_question)
+                    selected_answer = filtered_df[filtered_df['question'] == selected_question]['answer'].values[0]
+                    st.write("Answer:", selected_answer)
                 else:
+                    st.write("No matching questions found.")
                     column2.write("No matching focus areas found.")
-            else:
-                column2.write("Please enter or select a focus area to search.")
-                
-                
-
-            
-            
-
-
-
-
-
-
-
-
-
-
-
-
-
-            
-
-
-            
-            
-            
-            if not filtered_df.empty:
-                # Create a dropdown with matching questions
-                selected_question = st.selectbox("You may also want to know:", filtered_df['question'].tolist(), index=None)
-                
-                # Display the selected question and its answer
-                st.write("Selected Question:", selected_question)
-                selected_answer = filtered_df[filtered_df['question'] == selected_question]['answer'].values[0]
-                st.write("Answer:", selected_answer)
-            else:
-                st.write("No matching questions found.")
         else:
             st.write("Please enter a keyword to search.")
 
