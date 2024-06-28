@@ -92,7 +92,7 @@ def compute_similarity(synsets1, synsets2):
                 max_similarity = similarity
     return max_similarity
 
-def process_keyword(filtered_df):
+def process_keyword(keyword, filtered_df):
              
     keyword_synsets = get_synsets(keyword)
     focus_area_synsets = {area: get_synsets(area) for area in focus_areas}
@@ -185,7 +185,7 @@ if my_page == 'MedInfoHub':
             # Filter questions containing the keyword
             filtered_df = df[df['question'].str.contains(keyword, case=False, na=False)]
             
-            focus_area = process_keyword(filtered_df)
+            focus_area = process_keyword(keyword, filtered_df)
             select_questions(filtered_df)
         else:
             st.write("Please enter a keyword to search.")
