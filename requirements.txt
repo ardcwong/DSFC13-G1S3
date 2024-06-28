@@ -16,3 +16,4 @@ scikit-llm
 scipy
 spacy-streamlit
 numpy
+sentence-transformers
