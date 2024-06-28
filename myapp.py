@@ -254,7 +254,7 @@ def select_questions(filtered_df):
         selected_answer = filtered_df[filtered_df['question'] == selected_question]['answer'].values[0]
         container = st.container(border=True)
         container.subheader("ANSWER:")
-        top_keywords_ans = extract_keywords(all_answers_text)
+        top_keywords_ans = extract_keywords(selected_answer)
         column1.caption('TOP KEYWORDS')
         if top_keywords_ans:
             highlighted_keywords_ans = ""
