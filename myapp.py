@@ -153,8 +153,8 @@ def process_keyword(keyword, df, best_match_focus_area):
                 column1.markdown(highlighted_keywords, unsafe_allow_html=True)
                 
             else:  
-                column1.write("Top Keywords is unavailable.")
-                
+                column1.info('Top Keywords is unavailable.')
+
             if summary:
                 column1.markdown(summary)
                 # health = df[df['question']==title].iloc[0]
@@ -165,7 +165,7 @@ def process_keyword(keyword, df, best_match_focus_area):
                 
                 
             else:
-                column1.markdown("Summarizer unavailable.")
+                column1.info('Summarizer is unavailable.')
                 column1.markdown(all_answers_text)
                 
             # Generate word cloud of content of summary of answers
