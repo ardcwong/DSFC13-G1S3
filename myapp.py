@@ -28,7 +28,7 @@ st.set_page_config(layout='wide')
 
 st.sidebar.title('MedInfoHub')
 with st.sidebar:
-    st.caption("CONTACT US")
+    st.subheader("CONTACT US")
     st.write('For any concerns or suggestions, you may reach out to us through the following:')
     contactinfo = """
     Facebook: facebook.com/medinfohub
