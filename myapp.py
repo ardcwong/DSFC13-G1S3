@@ -144,6 +144,7 @@ def process_keyword(keyword, df, best_match_focus_area):
             #summary = all_answers_text
 
             top_keywords = extract_keywords(all_answers_text)
+            column1.caption('TOP KEYWORDS')
             if top_keywords:
                 highlighted_keywords = ""
                 for i, keyword in enumerate(top_keywords):
@@ -161,7 +162,7 @@ def process_keyword(keyword, df, best_match_focus_area):
                 # st.header(f"[{health['question']}]({health['source']})")
                 # st.caption(f"Focus Area: {health['focus_area']}")
 
-                column1.caption('TOP KEYWORDS')
+                
                 
             else:
                 column1.markdown("Summarizer unavailable.")
