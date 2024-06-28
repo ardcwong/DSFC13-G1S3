@@ -131,7 +131,7 @@ def process_keyword(keyword, filtered_df):
                 # st.caption(f"Focus Area: {health['focus_area']}")
             
                 st.caption('TOP KEYWORDS')
-                top_keywords = extract_keywords(summary)
+                top_keywords = extract_keywords(all_answers_text)
             
                 highlighted_keywords = ""
                 for i, keyword in enumerate(top_keywords):
@@ -244,9 +244,9 @@ if my_page == 'MedInfoHub':
             
             focus_area, summary = process_keyword(keyword, filtered_df)
             select_questions(filtered_df)
-            # if summary:
-            #     doctor_recommendation = specialty_doctor_recommendation(summary)
-            #     column2.markdown(doctor_recommendation)
+            if summary:
+                doctor_recommendation = specialty_doctor_recommendation(summary)
+                column2.markdown(doctor_recommendation)
         else:
             st.write("Please enter a keyword to search.")
 
