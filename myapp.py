@@ -355,25 +355,25 @@ elif on:
             focus_area, summary, filtered_df = process_keyword(keyword, df, best_match_focus_area)
             select_questions(filtered_df)
 
-
+            st.subheader('Telemedicine and Specialty Doctors')
+    
+        # Original text with website titles and URLs
+        text = """
+        For telemedicine consultations or to find the nearest specialty doctor near you, you may visit:
+        
+        <b>NowServing</b>: https://nowserving.ph/ \n
+        <b>Konsulta MD</b>: https://konsulta.md/ \n
+        <b>SeriousMD</b>: https://seriousmd.com/healthcare-super-app-philippines
+        """
+        
+        # Display formatted text with st.markdown
+        st.markdown(text, unsafe_allow_html=True)
     else:
         st.write("Please enter a keyword to search.")
 
 
 
-    st.subheader('Telemedicine and Specialty Doctors')
-    
-    # Original text with website titles and URLs
-    text = """
-    For telemedicine consultations or to find the nearest specialty doctor near you, you may visit:
-    
-    <b>NowServing</b>: https://nowserving.ph/ \n
-    <b>Konsulta MD</b>: https://konsulta.md/ \n
-    <b>SeriousMD</b>: https://seriousmd.com/healthcare-super-app-philippines
-    """
-    
-    # Display formatted text with st.markdown
-    st.markdown(text, unsafe_allow_html=True)
+
     
     
 
