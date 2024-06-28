@@ -36,7 +36,7 @@ df = pd.read_csv('data/medquad.csv')
 x = True
 # Define your focus areas
 focus_areas = df['focus_area'].str.lower().unique().tolist()
-def disable(x):
+def disable_openai(x):
     if x == True:
         disable = True
     return disable
@@ -60,7 +60,7 @@ def summarize_answer(focus_area):
     return summary
 
 def generate_response(summary, prompt):
-    disable = disable(x)
+    disable = disable_openai(x)
     if disable == True:
         return []
     else:
