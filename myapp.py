@@ -347,7 +347,7 @@ elif on:
                 # doctor_recommendation = specialty_doctor_recommendation(summary)
                 # column2.markdown(doctor_recommendation)
             else:
-                st.write("Please choose a focus area.")
+                st.info("Please choose a focus area.")
         elif choose_method == 'Best Match':
             # # Filter questions containing the keyword
             # filtered_df = df[df['question'].str.contains(keyword, case=False, na=False)]
@@ -369,7 +369,7 @@ elif on:
         # Display formatted text with st.markdown
         st.markdown(text, unsafe_allow_html=True)
     else:
-        st.write("Please enter a keyword to search.")
+        st.info("Please enter a keyword to search.")
 
 
 
