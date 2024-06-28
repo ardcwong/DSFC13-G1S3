@@ -219,7 +219,7 @@ def select_questions(filtered_df):
 
         selected_answer = filtered_df[filtered_df['question'] == selected_question]['answer'].values[0]
         container = st.container(border=True)
-        container.write("Answer:", selected_answer)
+        container.write("Answer:"+selected_answer)
         
         # st.write("Answer:", selected_answer)
 
