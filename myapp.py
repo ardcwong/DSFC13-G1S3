@@ -93,51 +93,50 @@ def compute_similarity(synsets1, synsets2):
     return max_similarity
 
 def process_keyword():
+    # Filter questions containing the keyword
+    filtered_df = df[df['question'].str.contains(keyword, case=False, na=False)]
+    column1, column2 = st.columns([1,1])
+    column1.header(keyword)
+       
+    keyword_synsets = get_synsets(keyword)
+    focus_area_synsets = {area: get_synsets(area) for area in focus_areas}
+              
+    # Calculate similarities
+    similarities = {}
+    for area, synsets in focus_area_synsets.items():
+        similarity = compute_similarity(keyword_synsets, synsets)
+        similarities[area] = similarity
+    
+    
+    # Find the focus area with the highest similarity
+    best_match_focus_area = max(similarities, key=similarities.get)
+    
+    column2.header(f"Focus Area - {best_match_focus_area}")
+    focus_area = best_match_focus_area
+    
+    if focus_area:
+      
+        # Filter answers by the selected focus area
+        filtered_df = df[df['focus_area'].str.lower().str.contains(focus_area, case=False, na=False)]
         
-        # Filter questions containing the keyword
-        filtered_df = df[df['question'].str.contains(keyword, case=False, na=False)]
-        column1, column2 = st.columns([1,1])
-        column1.header(keyword)
-           
-        keyword_synsets = get_synsets(keyword)
-        focus_area_synsets = {area: get_synsets(area) for area in focus_areas}
-                  
-        # Calculate similarities
-        similarities = {}
-        for area, synsets in focus_area_synsets.items():
-            similarity = compute_similarity(keyword_synsets, synsets)
-            similarities[area] = similarity
-        
-        
-        # Find the focus area with the highest similarity
-        best_match_focus_area = max(similarities, key=similarities.get)
-        
-        column2.header(f"Focus Area - {best_match_focus_area}")
-        focus_area = best_match_focus_area
-        
-        if focus_area:
-          
-            # Filter answers by the selected focus area
-            filtered_df = df[df['focus_area'].str.lower().str.contains(focus_area, case=False, na=False)]
+        if not filtered_df.empty:
+            # Concatenate all answers into a single text
+            all_answers_text = " ".join(filtered_df['answer'].dropna().tolist())
+            summary = summarize_answer(all_answers_text)
+            column1.markdown(summary) 
             
-            if not filtered_df.empty:
-                # Concatenate all answers into a single text
-                all_answers_text = " ".join(filtered_df['answer'].dropna().tolist())
-                summary = summarize_answer(all_answers_text)
-                column1.markdown(summary) 
-                
-                # Generate word cloud of content of summary of answers
-                wordcloud = WordCloud(width=800, height=400, background_color='white').generate(all_answers_text)
-                
-                # Display the word cloud
-                plt.figure(figsize=(10, 5))
-                plt.imshow(wordcloud, interpolation='bilinear')
-                plt.axis('off')
-                column2.pyplot(plt)
+            # Generate word cloud of content of summary of answers
+            wordcloud = WordCloud(width=800, height=400, background_color='white').generate(all_answers_text)
+            
+            # Display the word cloud
+            plt.figure(figsize=(10, 5))
+            plt.imshow(wordcloud, interpolation='bilinear')
+            plt.axis('off')
+            column2.pyplot(plt)
 
-            else:
-                
-                column2.write("No matching focus areas found.")
+        else:
+            
+            column2.write("No matching focus areas found.")
     return filtered_df, focus_area
     
 
