@@ -258,16 +258,17 @@ if my_page == 'MedInfoHub':
                 
                 focus_area, summary, filtered_df = process_keyword(keyword, df, focus_area_choose)
                 select_questions(filtered_df)
-                
+                doctor_recommendation = specialty_doctor_recommendation(summary)
+                column2.markdown(doctor_recommendation)
             elif choose_method == 'Best Match':
                 # # Filter questions containing the keyword
                 # filtered_df = df[df['question'].str.contains(keyword, case=False, na=False)]
                 best_match_focus_area = search_keyword(keyword, df['focus_area'])
                 focus_area, summary, filtered_df = process_keyword(keyword, df, best_match_focus_area)
                 select_questions(filtered_df)
-            if summary:
                 doctor_recommendation = specialty_doctor_recommendation(summary)
                 column2.markdown(doctor_recommendation)
+
         else:
             st.write("Please enter a keyword to search.")
 
