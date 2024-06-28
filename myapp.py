@@ -250,7 +250,7 @@ if my_page == 'MedInfoHub':
            
             choose_method = b.selectbox(
                     "Choose Keyword Search Method",
-                    ("Exact Word", "Best Match"), index=None)
+                    ("Exact Word", "Best Match"))
 
             if choose_method == 'Exact Word':
                 filtered_df = df[df['focus_area'].str.lower().str.contains(keyword, case=False, na=False)]
