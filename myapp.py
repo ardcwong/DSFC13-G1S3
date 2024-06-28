@@ -93,7 +93,8 @@ def compute_similarity(synsets1, synsets2):
     return max_similarity
 
 def process_keyword(keyword, filtered_df):
-             
+    column1, column2 = st.columns([1,1])
+    column1.header(keyword)
     keyword_synsets = get_synsets(keyword)
     focus_area_synsets = {area: get_synsets(area) for area in focus_areas}
               
@@ -138,8 +139,8 @@ def process_keyword(keyword, filtered_df):
             
                 st.markdown(highlighted_keywords, unsafe_allow_html=True) 
             
-                st.subheader('Full Medical Information')
-                st.write(health['answer'])
+                # st.subheader('Full Medical Information')
+                # st.write(health['answer'])
 
 
 
@@ -237,8 +238,7 @@ if my_page == 'MedInfoHub':
         st.subheader("Search Keyword Focus Area")
         keyword = st.text_input("Enter a keyword to search:")
         if keyword:
-            column1, column2 = st.columns([1,1])
-            column1.header(keyword)
+
             # Filter questions containing the keyword
             filtered_df = df[df['question'].str.contains(keyword, case=False, na=False)]
             
