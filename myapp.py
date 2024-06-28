@@ -287,7 +287,7 @@ def extract_keywords(text):
             except:
                 return []
 
-def telemedicine()
+def telemedicine():
     st.subheader('Telemedicine and Specialty Doctors')
 
     # Original text with website titles and URLs
