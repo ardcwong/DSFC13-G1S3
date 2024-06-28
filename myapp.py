@@ -332,17 +332,17 @@ elif on:
 
 st.title('Telemedicine and Specialty Doctors')
 
-    # Original text with website titles and URLs
-    text = """
-    For telemedicine consultations or to find the nearest specialty doctor near you, you may visit:
-    
+# Original text with website titles and URLs
+text = """
+For telemedicine consultations or to find the nearest specialty doctor near you, you may visit:
+
 <b>NowServing</b>: NowServing
 <b>Konsulta MD</b>: Konsulta MD
 <b>SeriousMD</b>: SeriousMD
 """
 
-    # Display formatted text with st.markdown
-    st.markdown(text, unsafe_allow_html=True)
+# Display formatted text with st.markdown
+st.markdown(text, unsafe_allow_html=True)
 
 
 
