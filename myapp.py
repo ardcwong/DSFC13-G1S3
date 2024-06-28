@@ -126,6 +126,7 @@ def compute_similarity(synsets1, synsets2):
             
 #             # Generate word cloud of content of summary of answers
 #             wordcloud = WordCloud(width=800, height=400, background_color='white').generate(all_answers_text)
+#             st.session_state['wordcloud'] = wordcloud
             
 #             # Display the word cloud
 #             plt.figure(figsize=(10, 5))
@@ -189,6 +190,7 @@ def compute_similarity(synsets1, synsets2):
 #             select_questions(filtered_df)
 
 
+
 def process_keyword(keyword, df):
     keyword_synsets = get_synsets(keyword)
     focus_areas = df['focus_area'].unique()
@@ -224,11 +226,6 @@ def initializing():
     # Dummy function for initialization
     st.write("Initializing...")
 
-df = pd.DataFrame({
-    'question': ["What is diabetes?", "How to treat hypertension?", "Symptoms of COVID-19?"],
-    'answer': ["Diabetes is a chronic condition.", "Hypertension can be treated with medication.", "Symptoms of COVID-19 include fever and cough."],
-    'focus_area': ["Diabetes", "Hypertension", "COVID-19"]
-})
 
 if 'initialized' not in st.session_state:
     st.session_state['initialized'] = False
@@ -279,6 +276,7 @@ else:
 
         filtered_df = df[df['focus_area'].str.lower().str.contains(st.session_state['focus_area'], case=False, na=False)]
         select_questions(filtered_df)
+
 
             
             # filtered_df, focus_area = process_keyword()
