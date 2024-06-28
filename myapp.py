@@ -211,13 +211,17 @@ def process_keyword(keyword, df, best_match_focus_area):
     return focus_area, summary, filtered_df
 
 def select_questions(filtered_df):
-    selected_question = st.selectbox("You may also want to know:", filtered_df['question'].tolist(), index=None, placeholder = 'Choose a question')
+    st.subheader("You may also want to know")
+    selected_question = st.selectbox(filtered_df['question'].tolist(), index=None, placeholder = 'Choose a question')
     if selected_question:
         # Display the selected question and its answer
-        st.write("Selected Question:", selected_question)
+        # st.write("Selected Question:", selected_question)
+
         selected_answer = filtered_df[filtered_df['question'] == selected_question]['answer'].values[0]
         st.write("Answer:", selected_answer)
-
+        highlighted_ans = ""
+        highlighted_ans += f"<span style='background-color:#D2EAF1;padding: 5px; border-radius: 5px; margin-right: 5px;'>{selected_answer}</span>"
+        column2.markdown(highlighted_ans, unsafe_allow_html=True)
 
 
 def extract_keywords(text):
@@ -289,7 +293,7 @@ elif on:
        
         choose_method = b.selectbox(
                 "Choose Keyword Search Method",
-                ("Exact Word","Best Match"), help = 'Exact Word: Returns every focus area that contains the word in "Enter a keyword to search:" | Best Match utilizes Sentence Transformers for words matching')
+                ("Exact Word","Best Match"), help = 'Exact Word: Returns every focus area that contains the word in "Enter a keyword to search:" | Best Match utilizes Sentence Transformers for words matching.')
 
         if choose_method == 'Exact Word':
             filtered_df = df[df['focus_area'].str.lower().str.contains(keyword, case=False, na=False)]
