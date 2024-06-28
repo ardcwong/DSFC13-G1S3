@@ -137,6 +137,7 @@ def process_keyword(filtered_df):
             
             column2.write("No matching focus areas found.")
     else:
+            column2.write("No Input keyword.")
     return focus_area
 
 def select_questions(filtered_df):
