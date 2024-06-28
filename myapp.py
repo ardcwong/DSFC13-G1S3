@@ -192,10 +192,10 @@ def process_keyword(keyword, df, best_match_focus_area):
             column2.pyplot(plt)
             doctor_recommendation = specialty_doctor_recommendation(summary)
             column2.subheader("Recommended Doctor for Consultation")
-            if not in doctor_recommendation.empty:
+            if doctor_recommendation:
                 column2.markdown(doctor_recommendation)
             else:  
-                column1.write('Doctor Recommender is unavailable.')
+                column2.write('Doctor Recommender is unavailable.')
         else:
             st.session_state['summary'] = "No matching focus areas found."
             st.session_state['wordcloud'] = None
