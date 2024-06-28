@@ -248,12 +248,12 @@ if my_page == 'MedInfoHub':
 
             
             def search_by():
-                option = st.selectbox(
+                choose_method = st.selectbox(
                         "Choose Keyword Search Method",
                         ("Exact Word", "Best Match"))
-                return option
+                return choose_method
 
-            if option == 'Exact Word':
+            if choose_method == 'Exact Word':
                 filtered_df = df[df['focus_area'].str.lower().str.contains(focus_area, case=False, na=False)]
                 focus_area_choose = st.selectbox(
                         "Choose (1) from matched Focus Area/s",
