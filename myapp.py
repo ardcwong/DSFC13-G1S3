@@ -32,9 +32,15 @@ my_page = st.sidebar.radio('Page Navigation', ['MedInfoHub'])
 df = pd.read_csv('data/medquad.csv')
 # df = df.iloc[:3000]
 
+# disable?
+x = True
 # Define your focus areas
 focus_areas = df['focus_area'].str.lower().unique().tolist()
-
+def disable(x):
+    if x == True:
+        disable = True
+    return disable
+    
 def generate_response(focus_area, prompt):
     response = client.chat.completions.create(
         model='gpt-3.5-turbo',
@@ -45,6 +51,7 @@ def generate_response(focus_area, prompt):
             {'role': 'user', 'content': prompt}
         ]
     )
+    
     return response.choices[0].message.content
 
 def summarize_answer(focus_area):
@@ -53,19 +60,23 @@ def summarize_answer(focus_area):
     return summary
 
 def generate_response(summary, prompt):
-    try:
-        response = client.chat.completions.create(
-            model='gpt-3.5-turbo',
-            messages=[
-                {'role': 'system',
-                 'content':
-                 f"Perform the specified tasks based on this summary:\n\n{summary}"},
-                {'role': 'user', 'content': prompt}
-            ]
-        )
-        return response.choices[0].message.content
-    except:
+    disable = disable(x)
+    if disable == True:
         return []
+    else:
+        try:
+            response = client.chat.completions.create(
+                model='gpt-3.5-turbo',
+                messages=[
+                    {'role': 'system',
+                     'content':
+                     f"Perform the specified tasks based on this summary:\n\n{summary}"},
+                    {'role': 'user', 'content': prompt}
+                ]
+            )
+            return response.choices[0].message.content
+        except:
+            return []
 
 
 def specialty_doctor_recommendation(summary):
