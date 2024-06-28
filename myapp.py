@@ -253,21 +253,21 @@ def select_questions(filtered_df):
 
         selected_answer = filtered_df[filtered_df['question'] == selected_question]['answer'].values[0]
         container = st.container(border=True)
-        container.subheader("ANSWER:")
+        container.subheader("ANSWER:") 
         top_keywords_ans = extract_keywords(selected_answer)
-        column1.caption('TOP KEYWORDS')
+        container.caption('TOP KEYWORDS')
         if top_keywords_ans:
             highlighted_keywords_ans = ""
             for i, keyword in enumerate(top_keywords_ans):
                 highlighted_keywords += f"<span style='background-color:#FFD3D3;padding: 5px; border-radius: 5px; margin-right: 5px;'>{keyword}</span>"
             
-            column1.markdown(highlighted_keywords_ans, unsafe_allow_html=True)
+            container.markdown(highlighted_keywords_ans, unsafe_allow_html=True)
             
         else:  
             highlighted_tkw_ans = ""
             highlighted_tkw_ans += f"<span style='background-color:#96BAC5;padding: 5px; border-radius: 5px; margin-right: 5px;'>{'Top Keywords is unavailable.'}</span>"
-            column1.markdown(highlighted_tkw_ans, unsafe_allow_html=True)
-                
+            container.markdown(highlighted_tkw_ans, unsafe_allow_html=True)
+       
         container.write(selected_answer)
         
         # st.write("Answer:", selected_answer)
