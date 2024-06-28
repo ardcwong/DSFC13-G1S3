@@ -221,7 +221,7 @@ def select_questions(filtered_df):
         st.write("Answer:", selected_answer)
         highlighted_ans = ""
         highlighted_ans += f"<span style='background-color:#D2EAF1;padding: 5px; border-radius: 5px; margin-right: 5px;'>{selected_answer}</span>"
-        column2.markdown(highlighted_ans, unsafe_allow_html=True)
+        st.markdown(highlighted_ans, unsafe_allow_html=True)
 
 
 def extract_keywords(text):
