@@ -243,8 +243,9 @@ if my_page == 'MedInfoHub':
             st.session_state['initialized'] = True
 
         # ENTER KEYWORD FOR SEMANTIC SIMILARITIES MATCHING WITH FOCUS AREA
-        a, b, c = st.columns([1,1,1])
         st.subheader("Search Keyword Focus Area")
+        a, b, c = st.columns([1,1,1])
+
         keyword = a.text_input("Enter a keyword to search:")
         if keyword:
            
