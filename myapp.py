@@ -29,7 +29,7 @@ st.set_page_config(layout='wide')
 st.markdown('<p style="font-size: 18px; color: red;"><strong>⚠️ This app is not intended for self-diagnosis or self-treatment. Always consult a qualified healthcare professional for medical advice and diagnosis. ⚠️</strong></p>', unsafe_allow_html=True)
 
 # disable?
-x = False
+x = "No"
 
 # @st.experimental_dialog("Cast your vote")
 # def vote(item):
@@ -69,14 +69,15 @@ df = pd.read_csv('data/medquad.csv')
 # Define your focus areas
 focus_areas = df['focus_area'].str.lower().unique().tolist()
 def disable_openai(x):
-    if x == True:
-        disable = True
-    else: disable = False
+    if x == "Yes":
+        disable = 1
+    else: 
+        disable = 0
     return disable
     
 def generate_response(focus_area, prompt):
     disable = disable_openai(x)
-    if disable == True:
+    if disable == 1:
         return []
     else:
         try:
@@ -101,7 +102,7 @@ def summarize_answer(focus_area):
 
 def generate_response(summary, prompt):
     disable = disable_openai(x)
-    if disable == True:
+    if disable == 1:
         return []
     else:
         try:
@@ -272,7 +273,7 @@ def extract_keywords(text):
         ###HEALTH###
         """
         disable = disable_openai(x)
-        if disable == True:
+        if disable == 1:
             return []
         else:
             try:
