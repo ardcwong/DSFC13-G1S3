@@ -38,9 +38,9 @@ with st.sidebar:
     Support: support@medinfohub.com
     
     Follow us on Social Media Platforms:
-    Facebook: https://www.facebook.com/medinfohub
-    Twitter: https://twitter.com/medinfohub
-    Instagram: https://instagram.com/medinfohub
+    Facebook: facebook.com/medinfohub
+    Twitter: twitter.com/medinfohub
+    Instagram: instagram.com/medinfohub
     """
     # Display formatted text with st.markdown
     st.markdown(contactinfo, unsafe_allow_html=True)
