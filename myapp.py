@@ -138,6 +138,7 @@ def process_keyword():
             else:
                 
                 column2.write("No matching focus areas found.")
+return filtered_df, focus_area
     
 
 
@@ -173,7 +174,7 @@ if my_page == 'MedInfoHub':
         st.subheader("Search Keyword Focus Area")
         keyword = st.text_input("Enter a keyword to search:")
         if keyword:
-            process_keyword()
+            filtered_df, focus_area = process_keyword()
             selected_question = st.selectbox("You may also want to know:", filtered_df['question'].tolist(), index=None)
             if selected_question:  
                 # Display the selected question and its answer
