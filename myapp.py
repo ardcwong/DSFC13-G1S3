@@ -147,7 +147,7 @@ def process_keyword(keyword, df, best_match_focus_area):
     
     column2.caption("FOCUS AREA")
     highlighted_fa = ""
-    highlighted_fa += f"<span style='background-color:#808080;padding: 5px; border-radius: 5px; margin-right: 5px;'>{best_match_focus_area.upper()}</span>"
+    highlighted_fa += f"<span style='background-color:#FF5757;padding: 5px; border-radius: 5px; margin-right: 5px;'>{best_match_focus_area.upper()}</span>"
     column2.markdown(highlighted_fa, unsafe_allow_html=True)
     # column2.caption(best_match_focus_area.upper())
     focus_area = best_match_focus_area
@@ -167,7 +167,7 @@ def process_keyword(keyword, df, best_match_focus_area):
             if top_keywords:
                 highlighted_keywords = ""
                 for i, keyword in enumerate(top_keywords):
-                    highlighted_keywords += f"<span style='background-color:#FF5757;padding: 5px; border-radius: 5px; margin-right: 5px;'>{keyword}</span>"
+                    highlighted_keywords += f"<span style='background-color:#FFD3D3;padding: 5px; border-radius: 5px; margin-right: 5px;'>{keyword}</span>"
 
                 column1.markdown(highlighted_keywords, unsafe_allow_html=True)
                 
