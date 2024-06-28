@@ -251,7 +251,7 @@ if my_page == 'MedInfoHub':
                     ("Exact Word", "Best Match"))
 
             if choose_method == 'Exact Word':
-                filtered_df = df[df['focus_area'].str.lower().str.contains(focus_area, case=False, na=False)]
+                filtered_df = df[df['focus_area'].str.lower().str.contains(keyword, case=False, na=False)]
                 focus_area_choose = st.selectbox(
                         "Choose (1) from matched Focus Area/s",
                         filtered_df["focus_area"].str.lower().unique().tolist())
