@@ -188,14 +188,39 @@ if my_page == 'MedInfoHub':
             
             focus_area, summary = process_keyword(keyword, filtered_df)
             select_questions(filtered_df)
-            if summary:
-                doctor_recommendation = specialty_doctor_recommendation(summary)
-                column2.markdown(doctor_recommendation)
+            # if summary:
+            #     doctor_recommendation = specialty_doctor_recommendation(summary)
+            #     column2.markdown(doctor_recommendation)
         else:
             st.write("Please enter a keyword to search.")
 
         
-
+def extract_keywords(text):
+        system_prompt = 'You are a health professional assistant tasked to extract keywords from medical question answering dataset.'
+    
+        main_prompt = """
+        ###TASK###
+        
+    Extract the five most crucial keywords from the medical question answering dataset. 
+    Extracted keywords must be listed in a comma-separated list. 
+    Example: Glaucoma, optic nerve, vision loss, eye, treatment
+    
+        ###HEALTH###
+        """
+    
+        try:
+            response = client.chat.completions.create(
+                model='gpt-3.5-turbo', 
+                messages=[
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": f"{main_prompt}\n{text}"}
+                ]
+            )
+            top_keywords = response.choices[0].message.content
+            return [kw.strip() for kw in top_keywords.split(',')]
+            
+        except:
+            return []
 
 
 
@@ -295,32 +320,7 @@ if my_page == 'Keyword Q':
     ### KEYWORD EXTRACTION
     st.title("Keyword Extraction")
     
-    def extract_keywords(text):
-        system_prompt = 'You are a health professional assistant tasked to extract keywords from medical question answering dataset.'
     
-        main_prompt = """
-        ###TASK###
-        
-    Extract the five most crucial keywords from the medical question answering dataset. 
-    Extracted keywords must be listed in a comma-separated list. 
-    Example: Glaucoma, optic nerve, vision loss, eye, treatment
-    
-        ###HEALTH###
-        """
-    
-        try:
-            response = client.chat.completions.create(
-                model='gpt-3.5-turbo', 
-                messages=[
-                    {"role": "system", "content": system_prompt},
-                    {"role": "user", "content": f"{main_prompt}\n{text}"}
-                ]
-            )
-            top_keywords = response.choices[0].message.content
-            return [kw.strip() for kw in top_keywords.split(',')]
-            
-        except:
-            return []
     
     title = st.selectbox(
         'Select medical question', df['question'], index=None
