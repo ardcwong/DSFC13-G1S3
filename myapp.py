@@ -292,8 +292,8 @@ else:
             #     st.session_state['process_keyword'] = True
             
 
-        else:
-            st.write("Please enter a keyword to search.")
+        # else:
+        #     st.write("Please enter a keyword to search.")
 
 
       
