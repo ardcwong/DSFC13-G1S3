@@ -255,11 +255,13 @@ if my_page == 'MedInfoHub':
                 focus_area_choose = st.selectbox(
                         "Choose (1) from matched Focus Area/s",
                         filtered_df["focus_area"].sort_values(ascending = True).str.lower().unique().tolist(), index=None)
-                
-                focus_area, summary, filtered_df = process_keyword(keyword, df, focus_area_choose)
-                select_questions(filtered_df)
-                doctor_recommendation = specialty_doctor_recommendation(summary)
-                column2.markdown(doctor_recommendation)
+                if focus_area_choose:
+                    focus_area, summary, filtered_df = process_keyword(keyword, df, focus_area_choose)
+                    select_questions(filtered_df)
+                    doctor_recommendation = specialty_doctor_recommendation(summary)
+                    column2.markdown(doctor_recommendation)
+                else:
+                    st.write("Please choose a focus area.")
             elif choose_method == 'Best Match':
                 # # Filter questions containing the keyword
                 # filtered_df = df[df['question'].str.contains(keyword, case=False, na=False)]
