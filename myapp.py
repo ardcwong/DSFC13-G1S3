@@ -192,7 +192,7 @@ def process_keyword(keyword, df, best_match_focus_area):
             column2.pyplot(plt)
             doctor_recommendation = specialty_doctor_recommendation(summary)
             column2.subheader("Recommended Doctor for Consultation")
-            if doctor_recommendation:
+            if not in doctor_recommendation.empty:
                 column2.markdown(doctor_recommendation)
             else:  
                 column1.write('Doctor Recommender is unavailable.')
