@@ -26,23 +26,22 @@ SKLLMConfig.set_openai_key(api_key)
 
 st.set_page_config(layout='wide')
 
-st.sidebar.title('MedInfoHub: Contact Us')
+st.sidebar.title('MedInfoHub')
 with st.sidebar:
+    st.caption("CONTACT US")
     st.write('For any concerns or suggestions, you may reach out to us through the following:')
 
     contactinfo = """
 
     Email us:
+    General Inquiries: info@medinfohub.com
+    Support: support@medinfohub.com
     
-General Inquiries: info@medinfohub.com
-Support: support@medinfohub.com
-
     Follow us on Social Media Platforms:
-    
-Facebook: MedInfoHub
-Twitter: MedInfoHub
-Instagram: MedInfoHub
-"""
+    Facebook: https://www.facebook.com/medinfohub
+    Twitter: https://twitter.com/medinfohub
+    Instagram: https://instagram.com/medinfohub
+    """
     # Display formatted text with st.markdown
     st.markdown(contactinfo, unsafe_allow_html=True)
 
