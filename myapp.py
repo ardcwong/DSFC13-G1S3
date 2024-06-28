@@ -191,12 +191,9 @@ if my_page == 'MedInfoHub':
         else:
             st.write("Please enter a keyword to search.")
 
-
-      
-            
-        # if summary:
-        #     doctor_recommendation = specialty_doctor_recommendation(summary)
-        #     column2.markdown(doctor_recommendation)
+        if summary:
+            doctor_recommendation = specialty_doctor_recommendation(summary)
+            column2.markdown(doctor_recommendation)
 
 
 
