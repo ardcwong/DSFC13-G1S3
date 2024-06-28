@@ -252,7 +252,7 @@ if my_page == 'MedInfoHub':
                         "Choose Keyword Search Method",
                         ("Exact Word", "Best Match"))
                 return choose_method
-
+            choose_method == search_by()
             if choose_method == 'Exact Word':
                 filtered_df = df[df['focus_area'].str.lower().str.contains(focus_area, case=False, na=False)]
                 focus_area_choose = st.selectbox(
@@ -262,7 +262,7 @@ if my_page == 'MedInfoHub':
                 focus_area, summary, filtered_df = process_keyword(keyword, df, focus_area_choose)
                 select_questions(filtered_df)
                 
-            else:
+            elif choose_method == 'Best Match':
                 # # Filter questions containing the keyword
                 # filtered_df = df[df['question'].str.contains(keyword, case=False, na=False)]
                 best_match_focus_area = search_keyword(keyword, df['focus_area'])
