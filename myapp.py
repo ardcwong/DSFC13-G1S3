@@ -174,17 +174,18 @@ if my_page == 'MedInfoHub':
         keyword = st.text_input("Enter a keyword to search:")
         if keyword:
             process_keyword()
+            selected_question = st.selectbox("You may also want to know:", filtered_df['question'].tolist(), index=None)
+            if selected_question:  
+                # Display the selected question and its answer
+                st.write("Selected Question:", selected_question)
+                selected_answer = filtered_df[filtered_df['question'] == selected_question]['answer'].values[0]
+                st.write("Answer:", selected_answer)
+                st.write("No matching questions found.")
         else:
             st.write("Please enter a keyword to search.")
 
 
-        selected_question = st.selectbox("You may also want to know:", filtered_df['question'].tolist(), index=None)
-        if selected_question:  
-            # Display the selected question and its answer
-            st.write("Selected Question:", selected_question)
-            selected_answer = filtered_df[filtered_df['question'] == selected_question]['answer'].values[0]
-            st.write("Answer:", selected_answer)
-            st.write("No matching questions found.")
+      
             
         if summary:
             doctor_recommendation = specialty_doctor_recommendation(summary)
