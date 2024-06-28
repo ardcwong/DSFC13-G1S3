@@ -188,7 +188,6 @@ if my_page == 'MedInfoHub':
             
             focus_area = process_keyword(keyword, filtered_df)
             select_questions(filtered_df)
-            selected_questionss = st.selectbox("You may also want to know as well:", filtered_df['question'].tolist(), index=None)
         else:
             st.write("Please enter a keyword to search.")
 
