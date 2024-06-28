@@ -263,21 +263,17 @@ col1, col2 = st.columns([1,1])
 col1.image('data/art.png')
 col2.write("")
 col2.write("")
-col2.write("MedInfoHub is a comprehensive healthcare app designed to provide accessible medical information to patients and healthcare providers. Leveraging the power of the MedQuAD dataset* and advanced AI, MedInfoHub offers reliable answers to medical questions, supports telemedicine consultations, and enhances public health literacy. Whether you’re a patient seeking to understand your health better or a healthcare provider in need of quick, reliable information, MedInfoHub is your go-to resource for trusted medical knowledge.")
-col2.write("*The MedQuAD dataset aggregates content from reputable sources like the National Institutes of Health (NIH), National Library of Medicine (NLM), and other authoritative medical organizations.")
-col2.write("Press the 'Activate MedInfoHub' Button to begin exploring MedInfoHub.")
-# def main():
-st.title('MedInfoHub: Your Trusted Medical Knowledge Resource')
-
 content = """
 <b style='color: blue;'>MedInfoHub</b> empowers you with reliable medical knowledge, making healthcare information accessible to all through the <b style='color: blue;'>provision of accessible and easy-to-understand medical information</b>. Leveraging the power of the MedQuAD dataset and advanced AI, it <b style='color: blue;'>enhances public health literacy and supports telemedicine consultations.</b> Whether you’re a patient managing a chronic condition, a caregiver needing clear explanations, a healthcare provider requiring quick and reliable information, or a health enthusiast looking for health tips, MedInfoHub is your go-to resource for trusted medical knowledge.
 """
+col2.markdown(content, unsafe_allow_html=True)
+# col2.write("MedInfoHub is a comprehensive healthcare app designed to provide accessible medical information to patients and healthcare providers. Leveraging the power of the MedQuAD dataset* and advanced AI, MedInfoHub offers reliable answers to medical questions, supports telemedicine consultations, and enhances public health literacy. Whether you’re a patient seeking to understand your health better or a healthcare provider in need of quick, reliable information, MedInfoHub is your go-to resource for trusted medical knowledge.")
+col2.write("*The MedQuAD dataset aggregates content from reputable sources like the National Institutes of Health (NIH), National Library of Medicine (NLM), and other authoritative medical organizations.")
+col2.write("Press the 'Activate MedInfoHub' Button to begin exploring MedInfoHub.")
 
-# Display the content using st.markdown
-st.markdown(content, unsafe_allow_html=True)
 
-# if __name__ == "__main__":
-#     main()
+
+
     
 # Displaying the button with custom style
 # col_start1, col_start2, col_start3 = st.columns([1,1,1])
