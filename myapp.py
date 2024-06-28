@@ -275,7 +275,10 @@ def select_questions(filtered_df):
             container.markdown(highlighted_tkw_ans, unsafe_allow_html=True)
        
         container.write(selected_answer)
-        
+        container.caption("SOURCE")
+        # source = filtered_df['source'].iloc[0]
+        # column1.subheader("Source")
+        # column1.markdown(source)
         # st.write("Answer:", selected_answer)
 
 
