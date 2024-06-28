@@ -112,7 +112,7 @@ if my_page == 'MedInfoHub':
     # START SESSION     
     if not on:
         st.session_state['initialized'] = False
-    
+        st.session_state['summarization'] = False
     elif on:
           # Check if initializing has been run
         if 'initialized' not in st.session_state:
@@ -170,19 +170,23 @@ if my_page == 'MedInfoHub':
                     column2.pyplot(plt)
 
 
-                    selected_question = st.selectbox("You may also want to know:", filtered_df['question'].tolist(), index=None)
-                    if selected_question:  
-                        # Display the selected question and its answer
-                        st.write("Selected Question:", selected_question)
-                        selected_answer = filtered_df[filtered_df['question'] == selected_question]['answer'].values[0]
-                        st.write("Answer:", selected_answer)
+                    
                 else:
-                    st.write("No matching questions found.")
+                    
                     column2.write("No matching focus areas found.")
         
         else:
             st.write("Please enter a keyword to search.")
-        
+
+
+        selected_question = st.selectbox("You may also want to know:", filtered_df['question'].tolist(), index=None)
+        if selected_question:  
+            # Display the selected question and its answer
+            st.write("Selected Question:", selected_question)
+            selected_answer = filtered_df[filtered_df['question'] == selected_question]['answer'].values[0]
+            st.write("Answer:", selected_answer)
+            st.write("No matching questions found.")
+            
         if summary:
             doctor_recommendation = specialty_doctor_recommendation(summary)
             column2.markdown(doctor_recommendation)
