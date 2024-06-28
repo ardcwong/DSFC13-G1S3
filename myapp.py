@@ -33,6 +33,48 @@ df = df.iloc[:3000]
 # Define your focus areas
 focus_areas = df['focus_area'].str.lower().unique().tolist()
 
+def generate_response(focus_area, prompt):
+    response = client.chat.completions.create(
+        model='gpt-3.5-turbo',
+        messages=[
+            {'role': 'system',
+             'content':
+             f"Perform the specified tasks based on this focus area:\n\n{focus_area}"},
+            {'role': 'user', 'content': prompt}
+        ]
+    )
+    return response.choices[0].message.content
+
+def summarize_answer(focus_area):
+    prompt = f'Summarize the answer in easy to understand terms and words'
+    summary = generate_response(focus_area, prompt)
+    return summary
+
+def generate_response(summary, prompt):
+    response = client.chat.completions.create(
+        model='gpt-3.5-turbo',
+        messages=[
+            {'role': 'system',
+             'content':
+             f"Perform the specified tasks based on this summary:\n\n{summary}"},
+            {'role': 'user', 'content': prompt}
+        ]
+    )
+    return response.choices[0].message.content
+
+def specialty_doctor_recommendation(summary):
+    prompt = f'Which specialty doctor should I consult?:\n\n{summary}'
+    doctor_recommendation = generate_response(summary, prompt)
+    return doctor_recommendation
+
+def initializing():
+        msg = st.toast('Getting Ready...')
+        time.sleep(1)
+        msg.toast('Initializing...')
+        time.sleep(1)
+        msg.toast('Ready!', icon = "🥞")
+        status = 1
+
 if my_page == 'MedInfoHub':
     
     st.image('data/MIH.png')
@@ -49,24 +91,8 @@ if my_page == 'MedInfoHub':
     # Displaying the button with custom style
     # col_start1, col_start2, col_start3 = st.columns([1,1,1])
     on = col2.toggle("Activate MedInfoHub")
-    def progress(): 
-        progress_text = "Operation in progress. Please wait."
-        my_bar = st.progress(0, text=progress_text)
-        
-        for percent_complete in range(100):
-            time.sleep(0.01)
-            my_bar.progress(percent_complete + 1, text=progress_text)
-        time.sleep(1)
-        my_bar.empty()
-
-        
-    def initializing():
-        msg = st.toast('Getting Ready...')
-        time.sleep(1)
-        msg.toast('Initializing...')
-        time.sleep(1)
-        msg.toast('Ready!', icon = "🥞")
-        status = 1
+       
+    
         
     if not on:
         st.session_state['initialized'] = False
@@ -80,7 +106,7 @@ if my_page == 'MedInfoHub':
             initializing()
             st.session_state['initialized'] = True
             
-        st.subheader("Keyword")
+        st.subheader("Search Keyword Focus Area")
         keyword = st.text_input("Enter a keyword to search:")
     
         if keyword:
@@ -88,8 +114,7 @@ if my_page == 'MedInfoHub':
             filtered_df = df[df['question'].str.contains(keyword, case=False, na=False)]
             column1, column2 = st.columns([1,1])
             column1.header(keyword)
-                      
-            
+               
             
             def get_synsets(text):
                     tokens = word_tokenize(text)
@@ -124,6 +149,13 @@ if my_page == 'MedInfoHub':
             focus_area = best_match_focus_area
             
             if focus_area:
+
+                summary = summarize_answer(focus_area)
+                column1.markdown(summary) 
+            
+                doctor_recommendation = specialty_doctor_recommendation(summary)
+                column1.markdown(doctor_recommendation)
+                
                 # Filter answers by the selected focus area
                 filtered_df = df[df['focus_area'].str.lower().str.contains(focus_area, case=False, na=False)]
                 
@@ -145,49 +177,11 @@ if my_page == 'MedInfoHub':
                 column2.write("Please enter or select a focus area to search.")
                 
                 
-            def generate_response(focus_area, prompt):
-                response = client.chat.completions.create(
-                    model='gpt-3.5-turbo',
-                    messages=[
-                        {'role': 'system',
-                         'content':
-                         f"Perform the specified tasks based on this focus area:\n\n{focus_area}"},
-                        {'role': 'user', 'content': prompt}
-                    ]
-                )
-                return response.choices[0].message.content
+
             
-            def summarize_answer(focus_area):
-                prompt = f'Summarize the answer in easy to understand terms and words'
-                summary = generate_response(focus_area, prompt)
-                return summary
             
-            def generate_response(summary, prompt):
-                response = client.chat.completions.create(
-                    model='gpt-3.5-turbo',
-                    messages=[
-                        {'role': 'system',
-                         'content':
-                         f"Perform the specified tasks based on this summary:\n\n{summary}"},
-                        {'role': 'user', 'content': prompt}
-                    ]
-                )
-                return response.choices[0].message.content
-            
-            def specialty_doctor_recommendation(summary):
-                prompt = f'Which specialty doctor should I consult?:\n\n{summary}'
-                doctor_recommendation = generate_response(summary, prompt)
-                return doctor_recommendation
-            
-            if focus_area:
-                summary = summarize_answer(focus_area)
-                column1.markdown(summary) 
-            
-                doctor_recommendation = specialty_doctor_recommendation(summary)
-                column1.markdown(doctor_recommendation)
 
 
-               progress()
 
 
 
