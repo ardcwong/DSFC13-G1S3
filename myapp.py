@@ -42,17 +42,24 @@ def disable_openai(x):
     return disable
     
 def generate_response(focus_area, prompt):
-    response = client.chat.completions.create(
-        model='gpt-3.5-turbo',
-        messages=[
-            {'role': 'system',
-             'content':
-             f"Perform the specified tasks based on this focus area:\n\n{focus_area}"},
-            {'role': 'user', 'content': prompt}
-        ]
-    )
-    
-    return response.choices[0].message.content
+    disable = disable_openai(x)
+    if disable == True:
+        return []
+    else:
+        try:
+            response = client.chat.completions.create(
+                model='gpt-3.5-turbo',
+                messages=[
+                    {'role': 'system',
+                     'content':
+                     f"Perform the specified tasks based on this focus area:\n\n{focus_area}"},
+                    {'role': 'user', 'content': prompt}
+                ]
+            )
+            
+            return response.choices[0].message.content
+        except:
+            return []
 
 def summarize_answer(focus_area):
     prompt = f'Summarize the answer in easy to understand terms and words'
@@ -196,6 +203,8 @@ def select_questions(filtered_df):
         st.write("Answer:", selected_answer)
     else:
         st.write("No matching questions found.")
+
+
 def extract_keywords(text):
         system_prompt = 'You are a health professional assistant tasked to extract keywords from medical question answering dataset.'
 
@@ -208,20 +217,23 @@ def extract_keywords(text):
 
         ###HEALTH###
         """
-
-        try:
-            response = client.chat.completions.create(
-                model='gpt-3.5-turbo',
-                messages=[
-                    {"role": "system", "content": system_prompt},
-                    {"role": "user", "content": f"{main_prompt}\n{text}"}
-                ]
-            )
-            top_keywords = response.choices[0].message.content
-            return [kw.strip() for kw in top_keywords.split(',')]
-
-        except:
+        disable = disable_openai(x)
+        if disable == True:
             return []
+        else:
+            try:
+                response = client.chat.completions.create(
+                    model='gpt-3.5-turbo',
+                    messages=[
+                        {"role": "system", "content": system_prompt},
+                        {"role": "user", "content": f"{main_prompt}\n{text}"}
+                    ]
+                )
+                top_keywords = response.choices[0].message.content
+                return [kw.strip() for kw in top_keywords.split(',')]
+    
+            except:
+                return []
 
 
 
