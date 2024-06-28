@@ -130,7 +130,7 @@ def process_keyword(keyword, filtered_df):
                 # st.caption(f"Focus Area: {health['focus_area']}")
             
                 st.caption('TOP KEYWORDS')
-                top_keywords = extract_keywords(health['answer'])
+                top_keywords = extract_keywords(summary)
             
                 highlighted_keywords = ""
                 for i, keyword in enumerate(top_keywords):
