@@ -58,7 +58,7 @@ if my_page == 'MedInfoHub':
         msg.toast('Ready!', icon = "🥞")
         status = 1
 
-  
+    st.session_state['initialized'] = False
     if on:
           # Check if initializing has been run
         if 'initialized' not in st.session_state:
