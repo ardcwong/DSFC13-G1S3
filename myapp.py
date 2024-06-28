@@ -248,13 +248,13 @@ if my_page == 'MedInfoHub':
            
             choose_method = st.selectbox(
                     "Choose Keyword Search Method",
-                    ("Exact Word", "Best Match"))
+                    ("Exact Word", "Best Match"), index=None)
 
             if choose_method == 'Exact Word':
                 filtered_df = df[df['focus_area'].str.lower().str.contains(keyword, case=False, na=False)]
                 focus_area_choose = st.selectbox(
                         "Choose (1) from matched Focus Area/s",
-                        filtered_df["focus_area"].str.lower().unique().tolist())
+                        filtered_df["focus_area"].str.lower().unique().tolist().sort(ascending = True), index=None)
                 
                 focus_area, summary, filtered_df = process_keyword(keyword, df, focus_area_choose)
                 select_questions(filtered_df)
