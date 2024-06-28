@@ -222,7 +222,10 @@ def process_keyword(keyword, df, best_match_focus_area):
                 highlighted_summ += f"<span style='background-color:#96BAC5;padding: 5px; border-radius: 5px; margin-right: 5px;'>{'Summarizer is unavailable. Showing all info.'}</span>"
                 column1.markdown(highlighted_summ, unsafe_allow_html=True)
                 column1.markdown(all_answers_text)
-                
+                column1.caption("SOURCE")
+                # source = filtered_df['source'].iloc[0]
+                # column1.subheader("Source")
+                # column1.markdown(source)              
             # Generate word cloud of content of summary of answers
             wordcloud = WordCloud(width=800, height=400, background_color='white').generate(all_answers_text)
             st.session_state['wordcloud'] = wordcloud
