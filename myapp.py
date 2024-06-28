@@ -107,21 +107,21 @@ def search_keyword(keyword, text_list):
     return best_match_focus_area
 
 
-def process_keyword(keyword, filtered_df):
+def process_keyword(keyword, df, best_match_focus_area):
     column1, column2 = st.columns([1,1])
     column1.header(keyword)
-    keyword_synsets = get_synsets(keyword)
-    focus_area_synsets = {area: get_synsets(area) for area in focus_areas}
+    # keyword_synsets = get_synsets(keyword)
+    # focus_area_synsets = {area: get_synsets(area) for area in focus_areas}
 
-    # Calculate similarities
-    similarities = {}
-    for area, synsets in focus_area_synsets.items():
-        similarity = compute_similarity(keyword_synsets, synsets)
-        similarities[area] = similarity
+    # # Calculate similarities
+    # similarities = {}
+    # for area, synsets in focus_area_synsets.items():
+    #     similarity = compute_similarity(keyword_synsets, synsets)
+    #     similarities[area] = similarity
 
 
-    # Find the focus area with the highest similarity
-    best_match_focus_area = max(similarities, key=similarities.get)
+    # # Find the focus area with the highest similarity
+    # best_match_focus_area = max(similarities, key=similarities.get)
 
     column2.header(f"Focus Area - {best_match_focus_area}")
     focus_area = best_match_focus_area
@@ -158,14 +158,6 @@ def process_keyword(keyword, filtered_df):
                 # st.write(health['answer'])
 
 
-
-
-
-
-
-
-
-
             column1.markdown(summary)
             # Generate word cloud of content of summary of answers
             wordcloud = WordCloud(width=800, height=400, background_color='white').generate(all_answers_text)
@@ -181,7 +173,7 @@ def process_keyword(keyword, filtered_df):
             st.session_state['summary'] = "No matching focus areas found."
             st.session_state['wordcloud'] = None
 
-    return focus_area, summary
+    return focus_area, summary, filtered_df
 
 def select_questions(filtered_df):
     selected_question = st.selectbox("You may also want to know:", filtered_df['question'].tolist(), index=None)
@@ -254,10 +246,10 @@ if my_page == 'MedInfoHub':
         keyword = st.text_input("Enter a keyword to search:")
         if keyword:
 
-            # Filter questions containing the keyword
-            filtered_df = df[df['question'].str.contains(keyword, case=False, na=False)]
-
-            focus_area, summary = process_keyword(keyword, filtered_df)
+            # # Filter questions containing the keyword
+            # filtered_df = df[df['question'].str.contains(keyword, case=False, na=False)]
+            best_match_focus_area = search_keyword(keyword, focus_areas)
+            focus_area, summary, filtered_df = process_keyword(keyword, df, best_match_focus_area)
             select_questions(filtered_df)
             if summary:
                 doctor_recommendation = specialty_doctor_recommendation(summary)
