@@ -173,7 +173,7 @@ def process_keyword(keyword, df, best_match_focus_area):
                 
             else:  
                 highlighted_tkw = ""
-                highlighted_tkw += f"<span style='background-color:#FAA8A8;padding: 5px; border-radius: 5px; margin-right: 5px;'>{'Top Keywords is unavailable.'}</span>"
+                highlighted_tkw += f"<span style='background-color:#96BAC5;padding: 5px; border-radius: 5px; margin-right: 5px;'>{'Top Keywords is unavailable.'}</span>"
                 column1.markdown(highlighted_tkw, unsafe_allow_html=True)
 
 
@@ -181,7 +181,9 @@ def process_keyword(keyword, df, best_match_focus_area):
                 column1.markdown(summary)
                 
             else:
-                column1.write('Summarizer is unavailable.')
+                highlighted_summ = ""
+                highlighted_summ += f"<span style='background-color:#96BAC5;padding: 5px; border-radius: 5px; margin-right: 5px;'>{'Summarizer is unavailable. Showing all info.'}</span>"
+                column1.markdown(highlighted_summ, unsafe_allow_html=True)
                 column1.markdown(all_answers_text)
                 
             # Generate word cloud of content of summary of answers
@@ -198,7 +200,10 @@ def process_keyword(keyword, df, best_match_focus_area):
             if doctor_recommendation:
                 column2.markdown(doctor_recommendation)
             else:  
-                column2.write('Doctor Recommender is unavailable.')
+                highlighted_dr = ""
+                highlighted_dr += f"<span style='background-color:#96BAC5;padding: 5px; border-radius: 5px; margin-right: 5px;'>{'Doctor Recommender is unavailable.'}</span>"
+                column2.markdown(highlighted_dr, unsafe_allow_html=True)
+
         else:
             st.session_state['summary'] = "No matching focus areas found."
             st.session_state['wordcloud'] = None
