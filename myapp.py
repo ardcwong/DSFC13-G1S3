@@ -200,9 +200,9 @@ if my_page == 'MedInfoHub':
 
       
             
-        if summary:
-            doctor_recommendation = specialty_doctor_recommendation(summary)
-            column2.markdown(doctor_recommendation)
+        # if summary:
+        #     doctor_recommendation = specialty_doctor_recommendation(summary)
+        #     column2.markdown(doctor_recommendation)
 
         
         tab1, tab2 = st.tabs(["📈 Chart", "🗃 Data"])
