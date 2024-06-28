@@ -336,9 +336,9 @@ st.header('Telemedicine and Specialty Doctors')
 text = """
 For telemedicine consultations or to find the nearest specialty doctor near you, you may visit:
 
-<b>NowServing</b>: NowServing\n
-<b>Konsulta MD</b>: Konsulta MD\n
-<b>SeriousMD</b>: SeriousMD
+<b>NowServing</b>: https://nowserving.ph/ \n
+<b>Konsulta MD</b>: https://konsulta.md/ MD\n
+<b>SeriousMD</b>: https://seriousmd.com/healthcare-super-app-philippines
 """
 
 # Display formatted text with st.markdown
