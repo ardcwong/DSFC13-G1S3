@@ -27,7 +27,7 @@ SKLLMConfig.set_openai_key(api_key)
 st.set_page_config(layout='wide')
 
 st.sidebar.title('MedInfoHub: Contact Us')
-with st.sidebar
+with st.sidebar:
     st.write('For any concerns or suggestions, you may reach out to us through the following:')
 
     contactinfo = """
