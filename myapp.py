@@ -31,7 +31,9 @@ with st.sidebar:
     st.caption("CONTACT US")
     st.write('For any concerns or suggestions, you may reach out to us through the following:')
     st.write("""Email us:
+    
     General Inquiries: info@medinfohub.com
+   
     Support: support@medinfohub.com""")
 
     
