@@ -211,7 +211,7 @@ def process_keyword(keyword, df, best_match_focus_area):
     return focus_area, summary, filtered_df
 
 def select_questions(filtered_df):
-    selected_question = st.selectbox("You may also want to know:", filtered_df['question'].tolist(), index=None)
+    selected_question = st.selectbox("You may also want to know:", 'Choose a question.', filtered_df['question'].tolist(), index=None)
     if selected_question:
         # Display the selected question and its answer
         st.write("Selected Question:", selected_question)
