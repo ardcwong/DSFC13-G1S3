@@ -26,7 +26,7 @@ SKLLMConfig.set_openai_key(api_key)
 
 st.set_page_config(layout='wide')
 
-confirmationEdit = Modal("Atención", key= "popUp_edit")
+st.markdown('<p style="font-size: 18px; color: red;"><strong>⚠️ This app is not intended for self-diagnosis or self-treatment. Always consult a qualified healthcare professional for medical advice and diagnosis. ⚠️</strong></p>', unsafe_allow_html=True)
 
 
 # @st.experimental_dialog("Cast your vote")
