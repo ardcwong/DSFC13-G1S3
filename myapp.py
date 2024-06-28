@@ -226,7 +226,7 @@ col2.write("Press the 'Activate MedInfoHub' Button to begin exploring MedInfoHub
 
 # Displaying the button with custom style
 # col_start1, col_start2, col_start3 = st.columns([1,1,1])
-on = col2.toggle("Activate MedInfoHub")
+on = col2.toggle("Activate MedInfoHub Engine")
 
 # START SESSION
 if not on:
