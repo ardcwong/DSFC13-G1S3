@@ -145,7 +145,8 @@ def process_keyword(keyword, df, best_match_focus_area):
     # # Find the focus area with the highest similarity
     # best_match_focus_area = max(similarities, key=similarities.get)
 
-    column2.header(f"Focus Area - {best_match_focus_area}")
+    column2.header("Focus Area")
+    column2.caption(best_match_focus_area)
     focus_area = best_match_focus_area
 
     if focus_area:
@@ -277,7 +278,7 @@ elif on:
        
         choose_method = b.selectbox(
                 "Choose Keyword Search Method",
-                ("Best Match","Exact Word"))
+                ("Exact Word","Best Match"))
 
         if choose_method == 'Exact Word':
             filtered_df = df[df['focus_area'].str.lower().str.contains(keyword, case=False, na=False)]
