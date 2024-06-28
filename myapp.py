@@ -113,7 +113,7 @@ def search_keyword(keyword, text_list):
 
 def process_keyword(keyword, df, best_match_focus_area):
     column1, column2 = st.columns([1,1])
-    column1.header(keyword)
+    column1.info(keyword)
     # keyword_synsets = get_synsets(keyword)
     # focus_area_synsets = {area: get_synsets(area) for area in focus_areas}
 
@@ -153,7 +153,7 @@ def process_keyword(keyword, df, best_match_focus_area):
                 column1.markdown(highlighted_keywords, unsafe_allow_html=True)
                 
             else:  
-                column1.info('Top Keywords is unavailable.')
+                column1.error('Top Keywords is unavailable.')
 
             if summary:
                 column1.markdown(summary)
@@ -165,7 +165,7 @@ def process_keyword(keyword, df, best_match_focus_area):
                 
                 
             else:
-                column1.info('Summarizer is unavailable.')
+                column1.error('Summarizer is unavailable.')
                 column1.markdown(all_answers_text)
                 
             # Generate word cloud of content of summary of answers
