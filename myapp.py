@@ -43,7 +43,8 @@ Facebook: MedInfoHub
 Twitter: MedInfoHub
 Instagram: MedInfoHub
 """
-
+    # Display formatted text with st.markdown
+    st.markdown(contactinfo, unsafe_allow_html=True)
 
 # DATA SET
 df = pd.read_csv('data/medquad.csv')
