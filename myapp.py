@@ -143,6 +143,17 @@ def process_keyword(keyword, df, best_match_focus_area):
             # column1.markdown(summary)
             #summary = all_answers_text
 
+            top_keywords = extract_keywords(all_answers_text)
+            if top_keywords:
+                highlighted_keywords = ""
+                for i, keyword in enumerate(top_keywords):
+                    highlighted_keywords += f"<span style='background-color:#808080;padding: 5px; border-radius: 5px; margin-right: 5px;'>{keyword}</span>"
+
+                column1.markdown(highlighted_keywords, unsafe_allow_html=True)
+                
+            else:  
+                column1.write("Top Keywords is unavailable.")
+                
             if summary:
                 column1.markdown(summary)
                 # health = df[df['question']==title].iloc[0]
@@ -151,16 +162,7 @@ def process_keyword(keyword, df, best_match_focus_area):
                 # st.caption(f"Focus Area: {health['focus_area']}")
 
                 column1.caption('TOP KEYWORDS')
-                top_keywords = extract_keywords(all_answers_text)
-                if top_keywords:
-                    highlighted_keywords = ""
-                    for i, keyword in enumerate(top_keywords):
-                        highlighted_keywords += f"<span style='background-color:#808080;padding: 5px; border-radius: 5px; margin-right: 5px;'>{keyword}</span>"
-
-                    column1.markdown(highlighted_keywords, unsafe_allow_html=True)
-                    
-                else:  
-                    column1.write("Top Keywords is unavailable.")
+                
             else:
                 column1.markdown("Summarizer unavailable.")
                 column1.markdown(all_answers_text)
