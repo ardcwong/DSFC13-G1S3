@@ -248,7 +248,7 @@ if my_page == 'MedInfoHub':
 
             # # Filter questions containing the keyword
             # filtered_df = df[df['question'].str.contains(keyword, case=False, na=False)]
-            best_match_focus_area = search_keyword(keyword, focus_areas)
+            best_match_focus_area = search_keyword(keyword, df['focus_area'])
             focus_area, summary, filtered_df = process_keyword(keyword, df, best_match_focus_area)
             select_questions(filtered_df)
             if summary:
