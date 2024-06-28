@@ -217,8 +217,7 @@ def select_questions(filtered_df):
         st.write("Selected Question:", selected_question)
         selected_answer = filtered_df[filtered_df['question'] == selected_question]['answer'].values[0]
         st.write("Answer:", selected_answer)
-    else:
-        st.write("No matching questions found.")
+
 
 
 def extract_keywords(text):
