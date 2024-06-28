@@ -172,11 +172,11 @@ if my_page == 'MedInfoHub':
 
 
                     selected_question = st.selectbox("You may also want to know:", filtered_df['question'].tolist(), index=None)
-                    
-                    # Display the selected question and its answer
-                    st.write("Selected Question:", selected_question)
-                    selected_answer = filtered_df[filtered_df['question'] == selected_question]['answer'].values[0]
-                    st.write("Answer:", selected_answer)
+                    if selected_question:  
+                        # Display the selected question and its answer
+                        st.write("Selected Question:", selected_question)
+                        selected_answer = filtered_df[filtered_df['question'] == selected_question]['answer'].values[0]
+                        st.write("Answer:", selected_answer)
                 else:
                     st.write("No matching questions found.")
                     column2.write("No matching focus areas found.")
