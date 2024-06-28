@@ -49,7 +49,17 @@ if my_page == 'MedInfoHub':
     # Displaying the button with custom style
     # col_start1, col_start2, col_start3 = st.columns([1,1,1])
     on = col2.toggle("Activate MedInfoHub")
+    def progress(): 
+        progress_text = "Operation in progress. Please wait."
+        my_bar = st.progress(0, text=progress_text)
+        
+        for percent_complete in range(100):
+            time.sleep(0.01)
+            my_bar.progress(percent_complete + 1, text=progress_text)
+        time.sleep(1)
+        my_bar.empty()
 
+        
     def initializing():
         msg = st.toast('Getting Ready...')
         time.sleep(1)
@@ -57,6 +67,7 @@ if my_page == 'MedInfoHub':
         time.sleep(1)
         msg.toast('Ready!', icon = "🥞")
         status = 1
+        
     if not on:
         st.session_state['initialized'] = False
     
@@ -174,6 +185,9 @@ if my_page == 'MedInfoHub':
             
                 doctor_recommendation = specialty_doctor_recommendation(summary)
                 column1.markdown(doctor_recommendation)
+
+
+           progress()
 
 
 
