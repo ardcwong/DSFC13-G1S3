@@ -361,21 +361,21 @@ elif on:
 
 
 
-st.subheader('Telemedicine and Specialty Doctors')
-
-# Original text with website titles and URLs
-text = """
-For telemedicine consultations or to find the nearest specialty doctor near you, you may visit:
-
-<b>NowServing</b>: https://nowserving.ph/ \n
-<b>Konsulta MD</b>: https://konsulta.md/ \n
-<b>SeriousMD</b>: https://seriousmd.com/healthcare-super-app-philippines
-"""
-
-# Display formatted text with st.markdown
-st.markdown(text, unsafe_allow_html=True)
-
-
+    st.subheader('Telemedicine and Specialty Doctors')
+    
+    # Original text with website titles and URLs
+    text = """
+    For telemedicine consultations or to find the nearest specialty doctor near you, you may visit:
+    
+    <b>NowServing</b>: https://nowserving.ph/ \n
+    <b>Konsulta MD</b>: https://konsulta.md/ \n
+    <b>SeriousMD</b>: https://seriousmd.com/healthcare-super-app-philippines
+    """
+    
+    # Display formatted text with st.markdown
+    st.markdown(text, unsafe_allow_html=True)
+    
+    
 
 
 
