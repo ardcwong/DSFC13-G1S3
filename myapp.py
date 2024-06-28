@@ -276,7 +276,7 @@ def main():
     # Display the content using st.markdown
     st.markdown(content, unsafeallowhtml=True)
 
-if __name__ == "__main":
+if __name__ == "__main__":
     main()
     
 # Displaying the button with custom style
