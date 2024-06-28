@@ -214,8 +214,7 @@ def extract_keywords(text):
 
 
 
-if my_page == 'MedInfoHub':
-
+#---------------------MAIN PROGRAM----------------------#
     st.image('data/MIH.png')
     col1, col2 = st.columns([1,1])
     col1.image('data/art.png')
