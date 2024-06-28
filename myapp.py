@@ -150,11 +150,7 @@ if my_page == 'MedInfoHub':
             
             if focus_area:
 
-                summary = summarize_answer(focus_area)
-                column1.markdown(summary) 
-            
-                doctor_recommendation = specialty_doctor_recommendation(summary)
-                column1.markdown(doctor_recommendation)
+
                 
                 # Filter answers by the selected focus area
                 filtered_df = df[df['focus_area'].str.lower().str.contains(focus_area, case=False, na=False)]
@@ -162,6 +158,10 @@ if my_page == 'MedInfoHub':
                 if not filtered_df.empty:
                     # Concatenate all answers into a single text
                     all_answers_text = " ".join(filtered_df['answer'].dropna().tolist())
+                    summary = summarize_answer(all_answers_text)
+                    column1.markdown(summary) 
+                    doctor_recommendation = specialty_doctor_recommendation(summary)
+                    column1.markdown(doctor_recommendation)
                     
                     # Generate word cloud of content of summary of answers
                     wordcloud = WordCloud(width=800, height=400, background_color='white').generate(all_answers_text)
