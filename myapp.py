@@ -26,7 +26,24 @@ SKLLMConfig.set_openai_key(api_key)
 
 st.set_page_config(layout='wide')
 
-my_page = st.sidebar.radio('Page Navigation', ['MedInfoHub'])
+st.sidebar.title('MedInfoHub: Contact Us')
+with st.sidebar
+    st.write('For any concerns or suggestions, you may reach out to us through the following:')
+
+    contactinfo = """
+
+    Email us:
+    
+General Inquiries: info@medinfohub.com
+Support: support@medinfohub.com
+
+    Follow us on Social Media Platforms:
+    
+Facebook: MedInfoHub
+Twitter: MedInfoHub
+Instagram: MedInfoHub
+"""
+
 
 # DATA SET
 df = pd.read_csv('data/medquad.csv')
