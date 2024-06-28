@@ -158,8 +158,7 @@ if my_page == 'MedInfoHub':
                     all_answers_text = " ".join(filtered_df['answer'].dropna().tolist())
                     summary = summarize_answer(all_answers_text)
                     column1.markdown(summary) 
-                    doctor_recommendation = specialty_doctor_recommendation(summary)
-                    column1.markdown(doctor_recommendation)
+
                     
                     # Generate word cloud of content of summary of answers
                     wordcloud = WordCloud(width=800, height=400, background_color='white').generate(all_answers_text)
@@ -180,6 +179,11 @@ if my_page == 'MedInfoHub':
                 else:
                     st.write("No matching questions found.")
                     column2.write("No matching focus areas found.")
+                if summary:
+                    doctor_recommendation = specialty_doctor_recommendation(summary)
+                    column2.markdown(doctor_recommendation)
+
+        
         else:
             st.write("Please enter a keyword to search.")
 
