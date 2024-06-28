@@ -93,6 +93,7 @@ def compute_similarity(synsets1, synsets2):
     return max_similarity
 
 def process_keyword():
+
     # Filter questions containing the keyword
     filtered_df = df[df['question'].str.contains(keyword, case=False, na=False)]
     column1, column2 = st.columns([1,1])
@@ -137,9 +138,19 @@ def process_keyword():
         else:
             
             column2.write("No matching focus areas found.")
+    else:
+        st.session_state['process_keyword'] == 1
     return filtered_df, focus_area
-    
 
+def select_questions(filtered_df)
+    selected_question = st.selectbox("You may also want to know:", filtered_df['question'].tolist(), index=None)
+    if selected_question:  
+        # Display the selected question and its answer
+        st.write("Selected Question:", selected_question)
+        selected_answer = filtered_df[filtered_df['question'] == selected_question]['answer'].values[0]
+        st.write("Answer:", selected_answer)
+    else:
+        st.write("No matching questions found.")
 
 if my_page == 'MedInfoHub':
     
@@ -159,7 +170,7 @@ if my_page == 'MedInfoHub':
     # START SESSION     
     if not on:
         st.session_state['initialized'] = False
-        st.session_state['summarization'] = False
+
     elif on:
           # Check if initializing has been run
         if 'initialized' not in st.session_state:
@@ -173,14 +184,16 @@ if my_page == 'MedInfoHub':
         st.subheader("Search Keyword Focus Area")
         keyword = st.text_input("Enter a keyword to search:")
         if keyword:
-            filtered_df, focus_area = process_keyword()
-            selected_question = st.selectbox("You may also want to know:", filtered_df['question'].tolist(), index=None)
-            if selected_question:  
-                # Display the selected question and its answer
-                st.write("Selected Question:", selected_question)
-                selected_answer = filtered_df[filtered_df['question'] == selected_question]['answer'].values[0]
-                st.write("Answer:", selected_answer)
-                st.write("No matching questions found.")
+            filtered_df, focus_area = process_keyword(0)
+            # Check if initializing has been run
+            if 'process_keyword' not in st.session_state:
+                st.session_state['process_keyword'] = False
+                select_questions(filtered_df)
+            
+            if not st.session_state['process_keyword']:
+                st.session_state['process_keyword'] = True
+            
+
         else:
             st.write("Please enter a keyword to search.")
 
