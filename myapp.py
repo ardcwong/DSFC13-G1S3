@@ -254,7 +254,7 @@ if my_page == 'MedInfoHub':
                 filtered_df = df[df['focus_area'].str.lower().str.contains(keyword, case=False, na=False)]
                 focus_area_choose = st.selectbox(
                         "Choose (1) from matched Focus Area/s",
-                        filtered_df["focus_area"].str.lower().unique().tolist().sort(ascending = True), index=None)
+                        sorted(filtered_df["focus_area"].str.lower().unique().tolist(), index=None), reverse = False)
                 
                 focus_area, summary, filtered_df = process_keyword(keyword, df, focus_area_choose)
                 select_questions(filtered_df)
