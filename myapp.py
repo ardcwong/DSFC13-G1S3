@@ -142,7 +142,7 @@ def process_keyword():
         st.session_state['process_keyword'] == 1
     return filtered_df, focus_area
 
-def select_questions(filtered_df)
+def select_questions(filtered_df):
     selected_question = st.selectbox("You may also want to know:", filtered_df['question'].tolist(), index=None)
     if selected_question:  
         # Display the selected question and its answer
