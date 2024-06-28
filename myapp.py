@@ -259,7 +259,7 @@ def select_questions(filtered_df):
         if top_keywords_ans:
             highlighted_keywords_ans = ""
             for i, keyword in enumerate(top_keywords_ans):
-                highlighted_keywords += f"<span style='background-color:#FFD3D3;padding: 5px; border-radius: 5px; margin-right: 5px;'>{keyword}</span>"
+                highlighted_keywords_ans += f"<span style='background-color:#FFD3D3;padding: 5px; border-radius: 5px; margin-right: 5px;'>{keyword}</span>"
             
             container.markdown(highlighted_keywords_ans, unsafe_allow_html=True)
             
