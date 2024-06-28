@@ -184,7 +184,7 @@ if my_page == 'MedInfoHub':
         st.subheader("Search Keyword Focus Area")
         keyword = st.text_input("Enter a keyword to search:")
         if keyword:
-            filtered_df, focus_area = process_keyword(0)
+            filtered_df, focus_area = process_keyword()
             # Check if initializing has been run
             if 'process_keyword' not in st.session_state:
                 st.session_state['process_keyword'] = False
