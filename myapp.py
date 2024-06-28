@@ -274,7 +274,7 @@ content = """
 """
 
 # Display the content using st.markdown
-st.markdown(content, unsafeallowhtml=True)
+st.markdown(content, unsafe_allow_html=True)
 
 # if __name__ == "__main__":
 #     main()
