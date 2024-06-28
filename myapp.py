@@ -187,7 +187,7 @@ if my_page == 'MedInfoHub':
                 column1.markdown(doctor_recommendation)
 
 
-           progress()
+               progress()
 
 
 
