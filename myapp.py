@@ -122,6 +122,34 @@ def process_keyword(keyword, filtered_df):
             # st.session_state['summary'] = summary
             # column1.markdown(summary) 
             summary = all_answers_text
+
+            if summary:
+                # health = df[df['question']==title].iloc[0]
+            
+                # st.header(f"[{health['question']}]({health['source']})")
+                # st.caption(f"Focus Area: {health['focus_area']}")
+            
+                st.caption('TOP KEYWORDS')
+                top_keywords = extract_keywords(health['answer'])
+            
+                highlighted_keywords = ""
+                for i, keyword in enumerate(top_keywords):
+                    highlighted_keywords += f"<span style='background-color:#808080;padding: 5px; border-radius: 5px; margin-right: 5px;'>{keyword}</span>"
+            
+                st.markdown(highlighted_keywords, unsafe_allow_html=True) 
+            
+                st.subheader('Full Medical Information')
+                st.write(health['answer'])
+
+
+
+
+
+
+
+
+
+            
             column1.markdown(summary) 
             # Generate word cloud of content of summary of answers
             wordcloud = WordCloud(width=800, height=400, background_color='white').generate(all_answers_text)
@@ -148,6 +176,34 @@ def select_questions(filtered_df):
         st.write("Answer:", selected_answer)
     else:
         st.write("No matching questions found.")
+def extract_keywords(text):
+        system_prompt = 'You are a health professional assistant tasked to extract keywords from medical question answering dataset.'
+    
+        main_prompt = """
+        ###TASK###
+        
+    Extract the five most crucial keywords from the medical question answering dataset. 
+    Extracted keywords must be listed in a comma-separated list. 
+    Example: Glaucoma, optic nerve, vision loss, eye, treatment
+    
+        ###HEALTH###
+        """
+    
+        try:
+            response = client.chat.completions.create(
+                model='gpt-3.5-turbo', 
+                messages=[
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": f"{main_prompt}\n{text}"}
+                ]
+            )
+            top_keywords = response.choices[0].message.content
+            return [kw.strip() for kw in top_keywords.split(',')]
+            
+        except:
+            return []
+
+
 
 if my_page == 'MedInfoHub':
     
@@ -195,32 +251,7 @@ if my_page == 'MedInfoHub':
             st.write("Please enter a keyword to search.")
 
         
-def extract_keywords(text):
-        system_prompt = 'You are a health professional assistant tasked to extract keywords from medical question answering dataset.'
-    
-        main_prompt = """
-        ###TASK###
-        
-    Extract the five most crucial keywords from the medical question answering dataset. 
-    Extracted keywords must be listed in a comma-separated list. 
-    Example: Glaucoma, optic nerve, vision loss, eye, treatment
-    
-        ###HEALTH###
-        """
-    
-        try:
-            response = client.chat.completions.create(
-                model='gpt-3.5-turbo', 
-                messages=[
-                    {"role": "system", "content": system_prompt},
-                    {"role": "user", "content": f"{main_prompt}\n{text}"}
-                ]
-            )
-            top_keywords = response.choices[0].message.content
-            return [kw.strip() for kw in top_keywords.split(',')]
-            
-        except:
-            return []
+
 
 
 
@@ -326,22 +357,6 @@ if my_page == 'Keyword Q':
         'Select medical question', df['question'], index=None
     )
     
-    if title:
-        health = df[df['question']==title].iloc[0]
-    
-        st.header(f"[{health['question']}]({health['source']})")
-        st.caption(f"Focus Area: {health['focus_area']}")
-    
-        st.caption('TOP KEYWORDS')
-        top_keywords = extract_keywords(health['answer'])
-    
-        highlighted_keywords = ""
-        for i, keyword in enumerate(top_keywords):
-            highlighted_keywords += f"<span style='background-color:#808080;padding: 5px; border-radius: 5px; margin-right: 5px;'>{keyword}</span>"
-    
-        st.markdown(highlighted_keywords, unsafe_allow_html=True) 
-    
-        st.subheader('Full Medical Information')
-        st.write(health['answer'])
+
     
     
