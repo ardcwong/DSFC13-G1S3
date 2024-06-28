@@ -298,7 +298,7 @@ elif on:
     a, b, c = st.columns([1,1,1])
 
     keyword = a.text_input("Enter a keyword to search:")
-    st.header(keyword)
+    st.title(keyword)
     if keyword:
        
         choose_method = b.selectbox(
@@ -330,14 +330,14 @@ elif on:
 
 
 
-st.title('Telemedicine and Specialty Doctors')
+st.header('Telemedicine and Specialty Doctors')
 
 # Original text with website titles and URLs
 text = """
 For telemedicine consultations or to find the nearest specialty doctor near you, you may visit:
 
-<b>NowServing</b>: NowServing
-<b>Konsulta MD</b>: Konsulta MD
+<b>NowServing</b>: NowServing\n
+<b>Konsulta MD</b>: Konsulta MD\n
 <b>SeriousMD</b>: SeriousMD
 """
 
