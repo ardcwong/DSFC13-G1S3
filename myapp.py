@@ -145,14 +145,14 @@ def process_keyword(keyword, df, best_match_focus_area):
                 # st.header(f"[{health['question']}]({health['source']})")
                 # st.caption(f"Focus Area: {health['focus_area']}")
 
-                st.caption('TOP KEYWORDS')
+                col1.caption('TOP KEYWORDS')
                 top_keywords = extract_keywords(all_answers_text)
 
                 highlighted_keywords = ""
                 for i, keyword in enumerate(top_keywords):
                     highlighted_keywords += f"<span style='background-color:#808080;padding: 5px; border-radius: 5px; margin-right: 5px;'>{keyword}</span>"
 
-                st.markdown(highlighted_keywords, unsafe_allow_html=True)
+                col1.markdown(highlighted_keywords, unsafe_allow_html=True)
 
                 # st.subheader('Full Medical Information')
                 # st.write(health['answer'])
