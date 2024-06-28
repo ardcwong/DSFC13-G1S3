@@ -30,7 +30,7 @@ my_page = st.sidebar.radio('Page Navigation', ['MedInfoHub', 'About MedQuAd Data
 
 # DATA SET
 df = pd.read_csv('data/medquad.csv')
-df = df.iloc[:3000]
+# df = df.iloc[:3000]
 
 # Define your focus areas
 focus_areas = df['focus_area'].str.lower().unique().tolist()
