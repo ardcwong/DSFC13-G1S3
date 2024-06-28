@@ -28,6 +28,8 @@ st.set_page_config(layout='wide')
 
 st.markdown('<p style="font-size: 18px; color: red;"><strong>⚠️ This app is not intended for self-diagnosis or self-treatment. Always consult a qualified healthcare professional for medical advice and diagnosis. ⚠️</strong></p>', unsafe_allow_html=True)
 
+# disable?
+x = False
 
 # @st.experimental_dialog("Cast your vote")
 # def vote(item):
@@ -63,8 +65,7 @@ with st.sidebar:
 df = pd.read_csv('data/medquad.csv')
 # df = df.iloc[:3000]
 
-# disable?
-x = True
+
 # Define your focus areas
 focus_areas = df['focus_area'].str.lower().unique().tolist()
 def disable_openai(x):
