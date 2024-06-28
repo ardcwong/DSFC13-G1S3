@@ -246,11 +246,28 @@ if my_page == 'MedInfoHub':
         keyword = st.text_input("Enter a keyword to search:")
         if keyword:
 
-            # # Filter questions containing the keyword
-            # filtered_df = df[df['question'].str.contains(keyword, case=False, na=False)]
-            best_match_focus_area = search_keyword(keyword, df['focus_area'])
-            focus_area, summary, filtered_df = process_keyword(keyword, df, best_match_focus_area)
-            select_questions(filtered_df)
+            
+            def search_by()
+                option = st.selectbox(
+                        "Choose Keyword Search Method",
+                        ("Exact Word", "Best Match"))
+                return option
+
+            if option == 'Exact Word':
+                filtered_df = df[df['focus_area'].str.lower().str.contains(focus_area, case=False, na=False)]
+                focus_area_choose = st.selectbox(
+                        "Choose (1) from matched Focus Area/s",
+                        filtered_df["focus_area"].str.lower().unique().tolist())
+                
+                focus_area, summary, filtered_df = process_keyword(keyword, df, focus_area_choose)
+                select_questions(filtered_df)
+                
+            else:
+                # # Filter questions containing the keyword
+                # filtered_df = df[df['question'].str.contains(keyword, case=False, na=False)]
+                best_match_focus_area = search_keyword(keyword, df['focus_area'])
+                focus_area, summary, filtered_df = process_keyword(keyword, df, best_match_focus_area)
+                select_questions(filtered_df)
             if summary:
                 doctor_recommendation = specialty_doctor_recommendation(summary)
                 column2.markdown(doctor_recommendation)
