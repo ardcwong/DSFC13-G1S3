@@ -330,14 +330,14 @@ elif on:
 
 
 
-st.header('Telemedicine and Specialty Doctors')
+st.subheader('Telemedicine and Specialty Doctors')
 
 # Original text with website titles and URLs
 text = """
 For telemedicine consultations or to find the nearest specialty doctor near you, you may visit:
 
 <b>NowServing</b>: https://nowserving.ph/ \n
-<b>Konsulta MD</b>: https://konsulta.md/ MD\n
+<b>Konsulta MD</b>: https://konsulta.md/ \n
 <b>SeriousMD</b>: https://seriousmd.com/healthcare-super-app-philippines
 """
 
