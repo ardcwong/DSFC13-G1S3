@@ -218,7 +218,10 @@ def select_questions(filtered_df):
         # st.write("Selected Question:", selected_question)
 
         selected_answer = filtered_df[filtered_df['question'] == selected_question]['answer'].values[0]
-        st.write("Answer:", selected_answer)
+        container = st.container(border=True)
+        container.write(selected_answer)
+        
+        # st.write("Answer:", selected_answer)
         highlighted_ans = ""
         highlighted_ans += f"<span style='background-color:#D2EAF1;padding: 5px; border-radius: 5px; margin-right: 5px;'>{selected_answer}</span>"
         st.markdown(highlighted_ans, unsafe_allow_html=True)
