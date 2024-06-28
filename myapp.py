@@ -66,8 +66,8 @@ if my_page == 'MedInfoHub':
         
         if not st.session_state['initialized']:
             initializing()
-            st.session_state['initialized'] = Trueinitializing()
-        
+            st.session_state['initialized'] = True
+            
         st.subheader("Keyword")
         keyword = st.text_input("Enter a keyword to search:")
     
