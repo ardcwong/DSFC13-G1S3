@@ -30,13 +30,12 @@ st.sidebar.title('MedInfoHub')
 with st.sidebar:
     st.caption("CONTACT US")
     st.write('For any concerns or suggestions, you may reach out to us through the following:')
-
-    contactinfo = """
-
-    Email us:
+    st.write("""Email us:
     General Inquiries: info@medinfohub.com
-    Support: support@medinfohub.com
+    Support: support@medinfohub.com""")
+
     
+    contactinfo = """
     Follow us on Social Media Platforms:
     Facebook: facebook.com/medinfohub
     Twitter: twitter.com/medinfohub
