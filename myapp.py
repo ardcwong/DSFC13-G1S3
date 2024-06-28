@@ -131,7 +131,7 @@ def search_keyword(keyword, text_list):
 
 def process_keyword(keyword, df, best_match_focus_area):
     column1, column2 = st.columns([1,1])
-    st.header(keyword)
+    column1.header(keyword)
     # keyword_synsets = get_synsets(keyword)
     # focus_area_synsets = {area: get_synsets(area) for area in focus_areas}
 
@@ -147,9 +147,7 @@ def process_keyword(keyword, df, best_match_focus_area):
     
     column2.caption("Focus Area")
     highlighted_fa = ""
-    for i, keyword in enumerate(best_match_focus_area):
-        highlighted_fa += f"<span style='background-color:#808080;padding: 5px; border-radius: 5px; margin-right: 5px;'>{best_match_focus_area.upper()}</span>"
-
+    highlighted_fa += f"<span style='background-color:#808080;padding: 5px; border-radius: 5px; margin-right: 5px;'>{best_match_focus_area.upper()}</span>"
     column2.markdown(highlighted_fa, unsafe_allow_html=True)
     # column2.caption(best_match_focus_area.upper())
     focus_area = best_match_focus_area
