@@ -138,7 +138,7 @@ def process_keyword():
             else:
                 
                 column2.write("No matching focus areas found.")
-return filtered_df, focus_area
+    return filtered_df, focus_area
     
 
 
