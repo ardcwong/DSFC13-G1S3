@@ -94,8 +94,7 @@ def compute_similarity(synsets1, synsets2):
 
 def process_keyword():
 
-    # Filter questions containing the keyword
-    filtered_df = df[df['question'].str.contains(keyword, case=False, na=False)]
+
     column1, column2 = st.columns([1,1])
     column1.header(keyword)
        
@@ -140,7 +139,7 @@ def process_keyword():
             column2.write("No matching focus areas found.")
     else:
         st.session_state['process_keyword'] == 1
-    return filtered_df, focus_area
+    return focus_area
 
 def select_questions(filtered_df):
     selected_question = st.selectbox("You may also want to know:", filtered_df['question'].tolist(), index=None)
@@ -184,10 +183,11 @@ if my_page == 'MedInfoHub':
         st.subheader("Search Keyword Focus Area")
         keyword = st.text_input("Enter a keyword to search:")
         if keyword:
+            # Filter questions containing the keyword
+            filtered_df = df[df['question'].str.contains(keyword, case=False, na=False)]
             if 'process_keyword' not in st.session_state:
                 st.session_state['process_keyword'] = False
-            
-            filtered_df, focus_area = process_keyword()
+                focus_area = process_keyword()
             
             if filtered_df is not None and not filtered_df.empty:
                 select_questions(filtered_df)
