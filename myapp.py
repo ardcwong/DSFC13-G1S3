@@ -140,9 +140,6 @@ def process_keyword(keyword, df, best_match_focus_area):
             all_answers_text = " ".join(filtered_df['answer'].dropna().tolist())
             summary = summarize_answer(all_answers_text)
 
-            # column1.markdown(summary)
-            #summary = all_answers_text
-
             top_keywords = extract_keywords(all_answers_text)
             column1.caption('TOP KEYWORDS')
             if top_keywords:
@@ -157,12 +154,6 @@ def process_keyword(keyword, df, best_match_focus_area):
 
             if summary:
                 column1.markdown(summary)
-                # health = df[df['question']==title].iloc[0]
-
-                # st.header(f"[{health['question']}]({health['source']})")
-                # st.caption(f"Focus Area: {health['focus_area']}")
-
-                
                 
             else:
                 column1.write('Summarizer is unavailable.')
@@ -252,17 +243,18 @@ if my_page == 'MedInfoHub':
             st.session_state['initialized'] = True
 
         # ENTER KEYWORD FOR SEMANTIC SIMILARITIES MATCHING WITH FOCUS AREA
+        a, b, c = st.columns([1,1,1])
         st.subheader("Search Keyword Focus Area")
-        keyword = st.text_input("Enter a keyword to search:")
+        keyword = a.text_input("Enter a keyword to search:")
         if keyword:
            
-            choose_method = st.selectbox(
+            choose_method = b.selectbox(
                     "Choose Keyword Search Method",
                     ("Exact Word", "Best Match"), index=None)
 
             if choose_method == 'Exact Word':
                 filtered_df = df[df['focus_area'].str.lower().str.contains(keyword, case=False, na=False)]
-                focus_area_choose = st.selectbox(
+                focus_area_choose = c.selectbox(
                         "Choose (1) from matched Focus Area/s",
                         filtered_df["focus_area"].sort_values(ascending = True).str.lower().unique().tolist(), index=None)
                 if focus_area_choose:
