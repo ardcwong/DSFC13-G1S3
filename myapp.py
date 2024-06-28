@@ -64,13 +64,12 @@ if my_page == 'MedInfoHub':
         st.subheader("Keyword")
         keyword = st.text_input("Enter a keyword to search:")
     
-     if keyword:
+        if keyword:
         # Filter questions containing the keyword
         filtered_df = df[df['question'].str.contains(keyword, case=False, na=False)]
         column1, column2 = st.columns([1,1])
         column1.header(keyword)
-            
-            
+                      
             
             
             def get_synsets(text):
