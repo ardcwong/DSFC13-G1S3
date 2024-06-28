@@ -131,7 +131,7 @@ def search_keyword(keyword, text_list):
 
 def process_keyword(keyword, df, best_match_focus_area):
     column1, column2 = st.columns([1,1])
-    column1.header(keyword)
+
     # keyword_synsets = get_synsets(keyword)
     # focus_area_synsets = {area: get_synsets(area) for area in focus_areas}
 
@@ -167,7 +167,7 @@ def process_keyword(keyword, df, best_match_focus_area):
             if top_keywords:
                 highlighted_keywords = ""
                 for i, keyword in enumerate(top_keywords):
-                    highlighted_keywords += f"<span style='background-color:#808080;padding: 5px; border-radius: 5px; margin-right: 5px;'>{keyword}</span>"
+                    highlighted_keywords += f"<span style='background-color:#FF5757;padding: 5px; border-radius: 5px; margin-right: 5px;'>{keyword}</span>"
 
                 column1.markdown(highlighted_keywords, unsafe_allow_html=True)
                 
@@ -277,6 +277,7 @@ elif on:
     a, b, c = st.columns([1,1,1])
 
     keyword = a.text_input("Enter a keyword to search:")
+    st.header(keyword)
     if keyword:
        
         choose_method = b.selectbox(
