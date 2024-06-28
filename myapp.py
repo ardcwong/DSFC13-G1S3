@@ -57,9 +57,16 @@ if my_page == 'MedInfoHub':
         time.sleep(1)
         msg.toast('Ready!', icon = "🥞")
         status = 1
-   
-    if on:
+
+    # Check if initializing has been run
+    if 'initialized' not in st.session_state:
+        st.session_state['initialized'] = False
+    
+    if not st.session_state['initialized']:
         initializing()
+        st.session_state['initialized'] = True
+    # if on:
+    #     initializing()
         
         st.subheader("Keyword")
         keyword = st.text_input("Enter a keyword to search:")
