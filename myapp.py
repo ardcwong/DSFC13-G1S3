@@ -65,7 +65,7 @@ def generate_response(summary, prompt):
         )
         return response.choices[0].message.content
     except:
-        return st.write("Summary Unavailable")
+        return []
 
 
 def specialty_doctor_recommendation(summary):
@@ -138,12 +138,13 @@ def process_keyword(keyword, df, best_match_focus_area):
         if not filtered_df.empty:
             # Concatenate all answers into a single text
             all_answers_text = " ".join(filtered_df['answer'].dropna().tolist())
-            # summary = summarize_answer(all_answers_text)
-            # st.session_state['summary'] = summary
+            summary = summarize_answer(all_answers_text)
+
             # column1.markdown(summary)
-            summary = all_answers_text
+            #summary = all_answers_text
 
             if summary:
+                column1.markdown(summary)
                 # health = df[df['question']==title].iloc[0]
 
                 # st.header(f"[{health['question']}]({health['source']})")
@@ -160,12 +161,10 @@ def process_keyword(keyword, df, best_match_focus_area):
                     
                 else:  
                     column1.write("Top Keywords is unavailable.")
-
-                # st.subheader('Full Medical Information')
-                # st.write(health['answer'])
-
-
-            column1.markdown(summary)
+            else:
+                column1.markdown("Summarizer unavailable.")
+                column1.markdown(all_answers_text)
+                
             # Generate word cloud of content of summary of answers
             wordcloud = WordCloud(width=800, height=400, background_color='white').generate(all_answers_text)
             st.session_state['wordcloud'] = wordcloud
