@@ -92,7 +92,7 @@ def compute_similarity(synsets1, synsets2):
                 max_similarity = similarity
     return max_similarity
 
-def process_keyword()
+def process_keyword():
         if keyword:
             # Filter questions containing the keyword
             filtered_df = df[df['question'].str.contains(keyword, case=False, na=False)]
