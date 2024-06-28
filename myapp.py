@@ -92,7 +92,7 @@ def compute_similarity(synsets1, synsets2):
                 max_similarity = similarity
     return max_similarity
 
-def process_keyword():
+def process_keyword(filtered_df):
 
 
     column1, column2 = st.columns([1,1])
@@ -187,7 +187,7 @@ if my_page == 'MedInfoHub':
             filtered_df = df[df['question'].str.contains(keyword, case=False, na=False)]
             if 'process_keyword' not in st.session_state:
                 st.session_state['process_keyword'] = False
-                focus_area = process_keyword()
+                focus_area = process_keyword(filtered_df)
             
             if filtered_df is not None and not filtered_df.empty:
                 select_questions(filtered_df)
