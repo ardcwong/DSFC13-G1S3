@@ -71,6 +71,7 @@ focus_areas = df['focus_area'].str.lower().unique().tolist()
 def disable_openai(x):
     if x == True:
         disable = True
+    else disable = False
     return disable
     
 def generate_response(focus_area, prompt):
