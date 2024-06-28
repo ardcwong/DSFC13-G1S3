@@ -247,7 +247,7 @@ if my_page == 'MedInfoHub':
         if keyword:
 
             
-            def search_by()
+            def search_by():
                 option = st.selectbox(
                         "Choose Keyword Search Method",
                         ("Exact Word", "Best Match"))
