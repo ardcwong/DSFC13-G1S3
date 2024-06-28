@@ -258,7 +258,7 @@ def extract_keywords(text):
 
 
 #---------------------MAIN PROGRAM----------------------#
-st.image('data/MIH.png')
+st.image('data/MIHv2.png')
 col1, col2 = st.columns([1,1])
 col1.image('data/art.png')
 col2.write("")
