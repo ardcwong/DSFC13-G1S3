@@ -189,8 +189,8 @@ if my_page == 'MedInfoHub':
             focus_area, summary = process_keyword(keyword, filtered_df)
             select_questions(filtered_df)
             if summary:
-            doctor_recommendation = specialty_doctor_recommendation(summary)
-            column2.markdown(doctor_recommendation)
+                doctor_recommendation = specialty_doctor_recommendation(summary)
+                column2.markdown(doctor_recommendation)
         else:
             st.write("Please enter a keyword to search.")
 
