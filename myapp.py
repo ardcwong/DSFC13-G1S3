@@ -169,6 +169,8 @@ if my_page == 'MedInfoHub':
                     plt.axis('off')
                     column2.pyplot(plt)
 
+                    st.session_state['summarization'] = True
+
 
                     
                 else:
