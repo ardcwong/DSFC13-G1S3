@@ -118,9 +118,9 @@ def process_keyword(keyword, filtered_df):
         if not filtered_df.empty:
             # Concatenate all answers into a single text
             all_answers_text = " ".join(filtered_df['answer'].dropna().tolist())
-           # summary = summarize_answer(all_answers_text)
-            # st.session_state['summary'] = summary
-            # column1.markdown(summary) 
+            summary = summarize_answer(all_answers_text)
+            st.session_state['summary'] = summary
+            column1.markdown(summary) 
             
             # Generate word cloud of content of summary of answers
             wordcloud = WordCloud(width=800, height=400, background_color='white').generate(all_answers_text)
@@ -197,17 +197,7 @@ if my_page == 'MedInfoHub':
         #     doctor_recommendation = specialty_doctor_recommendation(summary)
         #     column2.markdown(doctor_recommendation)
 
-        
-        tab1, tab2 = st.tabs(["📈 Chart", "🗃 Data"])
-        data = np.random.randn(10, 1)
-        
-        tab1.subheader("A tab with a chart")
-        tab1.line_chart(data)
-        
-        tab2.subheader("A tab with the data")
-        tab2.write(data)
 
-   
 
 
 if my_page == 'Keyword Q':
