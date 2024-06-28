@@ -145,8 +145,8 @@ def process_keyword(keyword, df, best_match_focus_area):
     # # Find the focus area with the highest similarity
     # best_match_focus_area = max(similarities, key=similarities.get)
 
-    column2.header("Focus Area")
-    column2.caption(best_match_focus_area)
+    column2.subheader("Focus Area")
+    column2.caption(best_match_focus_area.upper())
     focus_area = best_match_focus_area
 
     if focus_area:
