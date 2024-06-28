@@ -168,11 +168,14 @@ def process_keyword(keyword, df, best_match_focus_area):
                 highlighted_keywords = ""
                 for i, keyword in enumerate(top_keywords):
                     highlighted_keywords += f"<span style='background-color:#FFD3D3;padding: 5px; border-radius: 5px; margin-right: 5px;'>{keyword}</span>"
-
+                
                 column1.markdown(highlighted_keywords, unsafe_allow_html=True)
                 
             else:  
-                column1.write('Top Keywords is unavailable.')
+                highlighted_tkw = ""
+                highlighted_tkw += f"<span style='background-color:#FAA8A8;padding: 5px; border-radius: 5px; margin-right: 5px;'>{'Top Keywords is unavailable.'}</span>"
+                column1.markdown(highlighted_tkw, unsafe_allow_html=True)
+
 
             if summary:
                 column1.markdown(summary)
