@@ -62,7 +62,7 @@ with st.sidebar:
     st.markdown(contactinfo, unsafe_allow_html=True)
 
 # DATA SET
-df = pd.read_csv('data/medquad.csv')
+df = pd.read_csv('data/medquad-cleaned.csv')
 # df = df.iloc[:3000]
 
 
@@ -194,6 +194,7 @@ def process_keyword(keyword, df, best_match_focus_area):
         if not filtered_df.empty:
             # Concatenate all answers into a single text
             all_answers_text = " ".join(filtered_df['answer'].dropna().tolist())
+            lemmatized_answer = " ".join(filtered_df['lemmatized_answer_tokens'].dropna().tolist())
             summary = summarize_answer(all_answers_text)
 
             top_keywords = extract_keywords(all_answers_text)
@@ -223,11 +224,11 @@ def process_keyword(keyword, df, best_match_focus_area):
                 column1.markdown(highlighted_summ, unsafe_allow_html=True)
                 column1.markdown(all_answers_text)
                 column1.caption("SOURCE")
-                # source = filtered_df['source'].iloc[0]
-                # column1.subheader("Source")
-                # column1.markdown(source)              
+                source = filtered_df['source'].iloc[0]
+                column1.subheader("Source")
+                column1.markdown(source)              
             # Generate word cloud of content of summary of answers
-            wordcloud = WordCloud(width=800, height=400, background_color='white').generate(all_answers_text)
+            wordcloud = WordCloud(width=800, height=400, background_color='white').generate(lemmatized_answer)
             st.session_state['wordcloud'] = wordcloud
 
             # Display the word cloud
@@ -276,10 +277,10 @@ def select_questions(filtered_df):
        
         container.write(selected_answer)
         container.caption("SOURCE")
-        # source = filtered_df['source'].iloc[0]
-        # column1.subheader("Source")
-        # column1.markdown(source)
-        # st.write("Answer:", selected_answer)
+        source = filtered_df['source'].iloc[0]
+        column1.subheader("Source")
+        column1.markdown(source)
+
 
 
 
