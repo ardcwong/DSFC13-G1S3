@@ -52,7 +52,7 @@ st.markdown('<p style="font-size: 18px; color: red;"><strong>⚠️ This app is 
 st.sidebar.title('MedInfoHub')
 with st.sidebar:
     st.subheader("WHAT WE OFFER")
-    st.image('data/art.png')
+    st.image('data/use.png')
     st.subheader("CONTACT US")
     st.write('For any concerns or suggestions, you may reach out to us through the following:')
     contactinfo = """
