@@ -62,11 +62,11 @@ with st.sidebar:
     st.markdown(contactinfo, unsafe_allow_html=True)
 
 with st.sidebar:
-    dis_openai = st.toggle("Disable")
-    if dis_openai:
-        x = "Yes"
-    else:
+    enable_openai = st.toggle("AI")
+    if enable_openai:
         x = "No"
+    else:
+        x = "Yes"
 
 
 
