@@ -14,6 +14,7 @@ from wordcloud import WordCloud
 import subprocess
 import time
 import numpy as np
+import ast
 # Custom function to download NLTK data
 nltk.download('punkt', quiet=True)
 nltk.download('wordnet', quiet=True)
@@ -63,6 +64,7 @@ with st.sidebar:
 
 # DATA SET
 df = pd.read_csv('data/medquad-cleaned.csv')
+df['lemmatized_answer_tokens'] = [ast.literal_eval(x) for x in  df['lemmatized_answer_tokens']]
 # df = df.iloc[:3000]
 
 
@@ -71,10 +73,10 @@ focus_areas = df['focus_area'].str.lower().unique().tolist()
 def disable_openai(x):
     if x == "Yes":
         disable = 1
-    else: 
+    else:
         disable = 0
     return disable
-    
+
 def generate_response(focus_area, prompt):
     disable = disable_openai(x)
     if disable == 1:
@@ -90,7 +92,7 @@ def generate_response(focus_area, prompt):
                     {'role': 'user', 'content': prompt}
                 ]
             )
-            
+
             return response.choices[0].message.content
         except:
             return []
@@ -178,7 +180,7 @@ def process_keyword(keyword, df, best_match_focus_area):
 
     # # Find the focus area with the highest similarity
     # best_match_focus_area = max(similarities, key=similarities.get)
-    
+
     column2.caption("FOCUS AREA")
     highlighted_fa = ""
     highlighted_fa += f"<span style='background-color:#FAA8A8;padding: 5px; border-radius: 5px; margin-right: 5px;'>{best_match_focus_area.upper()}</span>"
@@ -203,10 +205,10 @@ def process_keyword(keyword, df, best_match_focus_area):
                 highlighted_keywords = ""
                 for i, keyword in enumerate(top_keywords):
                     highlighted_keywords += f"<span style='background-color:#FFD3D3;padding: 5px; border-radius: 5px; margin-right: 5px;'>{keyword}</span>"
-                
+
                 column1.markdown(highlighted_keywords, unsafe_allow_html=True)
-                
-            else:  
+
+            else:
                 highlighted_tkw = ""
                 highlighted_tkw += f"<span style='background-color:#96BAC5;padding: 5px; border-radius: 5px; margin-right: 5px;'>{'Top Keywords is unavailable.'}</span>"
                 column1.markdown(highlighted_tkw, unsafe_allow_html=True)
@@ -226,7 +228,7 @@ def process_keyword(keyword, df, best_match_focus_area):
                 column1.caption("SOURCE")
                 source = filtered_df['source'].iloc[0]
                 column1.subheader("Source")
-                column1.markdown(source)              
+                column1.markdown(source)
             # Generate word cloud of content of summary of answers
             wordcloud = WordCloud(width=800, height=400, background_color='white').generate(lemmatized_answer)
             st.session_state['wordcloud'] = wordcloud
@@ -240,7 +242,7 @@ def process_keyword(keyword, df, best_match_focus_area):
             column2.subheader("Recommended Doctor for Consultation")
             if doctor_recommendation:
                 column2.markdown(doctor_recommendation)
-            else:  
+            else:
                 highlighted_dr = ""
                 highlighted_dr += f"<span style='background-color:#96BAC5;padding: 5px; border-radius: 5px; margin-right: 5px;'>{'Doctor Recommender is unavailable.'}</span>"
                 column2.markdown(highlighted_dr, unsafe_allow_html=True)
@@ -260,21 +262,21 @@ def select_questions(filtered_df):
 
         selected_answer = filtered_df[filtered_df['question'] == selected_question]['answer'].values[0]
         container = st.container(border=True)
-        container.subheader("ANSWER:") 
+        container.subheader("ANSWER:")
         top_keywords_ans = extract_keywords(selected_answer)
         container.caption('TOP KEYWORDS')
         if top_keywords_ans:
             highlighted_keywords_ans = ""
             for i, keyword in enumerate(top_keywords_ans):
                 highlighted_keywords_ans += f"<span style='background-color:#FFD3D3;padding: 5px; border-radius: 5px; margin-right: 5px;'>{keyword}</span>"
-            
+
             container.markdown(highlighted_keywords_ans, unsafe_allow_html=True)
-            
-        else:  
+
+        else:
             highlighted_tkw_ans = ""
             highlighted_tkw_ans += f"<span style='background-color:#96BAC5;padding: 5px; border-radius: 5px; margin-right: 5px;'>{'Top Keywords is unavailable.'}</span>"
             container.markdown(highlighted_tkw_ans, unsafe_allow_html=True)
-       
+
         container.write(selected_answer)
         container.caption("SOURCE")
         source = filtered_df['source'].iloc[0]
@@ -309,7 +311,7 @@ def extract_keywords(text):
                 )
                 top_keywords = response.choices[0].message.content
                 return [kw.strip() for kw in top_keywords.split(',')]
-    
+
             except:
                 return []
 
@@ -319,12 +321,12 @@ def telemedicine():
     # Original text with website titles and URLs
     text = """
     For telemedicine consultations or to find the nearest specialty doctor near you, you may visit:
-    
+
     <b>NowServing</b>: https://nowserving.ph/ \n
     <b>Konsulta MD</b>: https://konsulta.md/ \n
     <b>SeriousMD</b>: https://seriousmd.com/healthcare-super-app-philippines
     """
-    
+
     # Display formatted text with st.markdown
     st.markdown(text, unsafe_allow_html=True)
 
@@ -345,7 +347,7 @@ col2.write("Press the 'Activate MedInfoHub' Button to begin exploring MedInfoHub
 
 #0C3974
 
-    
+
 # Displaying the button with custom style
 # col_start1, col_start2, col_start3 = st.columns([1,1,1])
 on = col2.toggle("Activate MedInfoHub Engine")
@@ -370,7 +372,7 @@ elif on:
     keyword = a.text_input("Enter a keyword to search:")
     st.title(keyword)
     if keyword:
-       
+
         choose_method = b.selectbox(
                 "Choose Keyword Search Method",
                 ("Exact Word","Best Match"), help = 'Exact Word: Returns every focus area that contains the word in "Enter a keyword to search:" | Best Match utilizes Sentence Transformers for words matching.')
@@ -402,8 +404,8 @@ elif on:
 
 
 
-    
-    
+
+
 
 
 
