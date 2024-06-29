@@ -196,7 +196,7 @@ def process_keyword(keyword, df, best_match_focus_area):
         if not filtered_df.empty:
             # Concatenate all answers into a single text
             all_answers_text = " ".join(filtered_df['answer'].dropna().tolist())
-            lemmatized_answer = " ".join(filtered_df['lemmatized_answer_tokens'].dropna().tolist())
+            lemmatized_answer = " ".join(filtered_df['lemmatized_answer_tokens'].dropna().replace(" '","").tolist())
             summary = summarize_answer(all_answers_text)
 
             top_keywords = extract_keywords(all_answers_text)
