@@ -64,7 +64,7 @@ with st.sidebar:
 
 # DATA SET
 df = pd.read_csv('data/medquad-cleaned.csv')
-df['lemmatized_answer_tokens'] = [ast.literal_eval(x) for x in  df['lemmatized_answer_tokens']]
+# df['lemmatized_answer_tokens'] = [ast.literal_eval(x) for x in  df['lemmatized_answer_tokens']]
 # df = df.iloc[:3000]
 
 
