@@ -230,6 +230,7 @@ def process_keyword(keyword, df, best_match_focus_area):
                 column1.subheader("Source")
                 column1.markdown(source)
             # Generate word cloud of content of summary of answers
+            column2.dataframe(filtered_df['lemmatized_answer_tokens'])
             wordcloud = WordCloud(width=800, height=400, background_color='white').generate(lemmatized_answer)
             st.session_state['wordcloud'] = wordcloud
 
