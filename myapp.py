@@ -230,9 +230,9 @@ def process_keyword(keyword, df, best_match_focus_area):
             if summary:
                 column1.markdown(summary)
                 column1.caption("SOURCE")
-                # source = filtered_df['source'].iloc[0]
+                source = filtered_df['source'].iloc[0]
                 # column1.subheader("Source")
-                # column1.markdown(source)
+                column1.markdown(source)
             else:
                 highlighted_summ = ""
                 highlighted_summ += f"<span style='background-color:#96BAC5;padding: 5px; border-radius: 5px; margin-right: 5px;'>{'Summarizer is unavailable. Showing all info.'}</span>"
