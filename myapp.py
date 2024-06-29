@@ -30,6 +30,7 @@ st.set_page_config(layout='wide')
 st.markdown('<p style="font-size: 18px; color: red;"><strong>⚠️ This app is not intended for self-diagnosis or self-treatment. Always consult a qualified healthcare professional for medical advice and diagnosis. ⚠️</strong></p>', unsafe_allow_html=True)
 
 # disable?
+x = "Yes"
 
 # @st.experimental_dialog("Cast your vote")
 # def vote(item):
@@ -63,12 +64,13 @@ with st.sidebar:
     # Display formatted text with st.markdown
     st.markdown(contactinfo, unsafe_allow_html=True)
 
-with st.sidebar:
-    enable_openai = st.toggle("AI")
-    if enable_openai:
-        x = "No"
-    else:
-        x = "Yes"
+# with st.sidebar:
+#     st.page
+#     enable_openai = st.toggle("AI")
+#     if enable_openai:
+#         x = "No"
+#     else:
+#         x = "Yes"
 
 
 
