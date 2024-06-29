@@ -238,7 +238,6 @@ def process_keyword(keyword, df, best_match_focus_area):
                 column1.markdown(all_answers_text)
                 column1.caption("SOURCE")
                 source = filtered_df['source'].iloc[0]
-                column1.subheader("Source")
                 column1.markdown(source)
             # Generate word cloud of content of summary of answers
             # column2.dataframe(filtered_df['lemmatized_answer_tokens'])
