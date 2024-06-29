@@ -278,8 +278,8 @@ def select_questions(filtered_df):
         container.write(selected_answer)
         container.caption("SOURCE")
         source = filtered_df['source'].iloc[0]
-        column1.subheader("Source")
-        column1.markdown(source)
+        container.subheader("Source")
+        container.markdown(source)
 
 
 
