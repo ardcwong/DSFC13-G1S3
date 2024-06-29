@@ -64,7 +64,7 @@ with st.sidebar:
 
 # DATA SET
 df = pd.read_csv('data/medquad-cleaned.csv')
-# df['lemmatized_answer_tokens'] = [ast.literal_eval(x) for x in  df['lemmatized_answer_tokens']]
+df['lemmatized_answer_tokens'] = [ast.literal_eval(x) for x in  df['lemmatized_answer_tokens']]
 # df = df.iloc[:3000]
 
 
@@ -196,7 +196,7 @@ def process_keyword(keyword, df, best_match_focus_area):
         if not filtered_df.empty:
             # Concatenate all answers into a single text
             all_answers_text = " ".join(filtered_df['answer'].dropna().tolist())
-            lemmatized_answer = " ".join(filtered_df['lemmatized_answer_tokens'].dropna().replace(" '","").tolist())
+            lemmatized_answer = " ".join(filtered_df['lemmatized_answer_tokens'])
             summary = summarize_answer(all_answers_text)
 
             top_keywords = extract_keywords(all_answers_text)
