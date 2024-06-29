@@ -17,4 +17,3 @@ scipy
 spacy-streamlit
 numpy
 sentence-transformers
-ast
